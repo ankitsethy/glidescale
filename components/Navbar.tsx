@@ -32,22 +32,21 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05] py-4' 
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05] py-4'
           : 'bg-transparent border-b border-transparent py-6'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <button 
-          onClick={() => scrollToSection('home')} 
+        <button
+          onClick={() => scrollToSection('home')}
           className="text-xl font-bold tracking-tight text-white flex items-center gap-2 group focus:outline-none"
         >
           <div className="relative w-3 h-3">
-             <div className="absolute inset-0 bg-electric-500 rounded-full animate-pulse-glow"></div>
-             <div className="absolute inset-0.5 bg-white rounded-full"></div>
+            <div className="absolute inset-0 bg-electric-500 rounded-full animate-pulse-glow"></div>
+            <div className="absolute inset-0.5 bg-white rounded-full"></div>
           </div>
           <span className="group-hover:text-electric-300 transition-colors">glidescale</span>
         </button>
@@ -55,7 +54,7 @@ export const Navbar: React.FC = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-400">
           {navLinks.map((link) => (
-            <button 
+            <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
               className="relative hover:text-white transition-colors duration-300 py-1 group focus:outline-none"
@@ -68,17 +67,17 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             className="!py-2.5 !px-6 !text-sm !h-auto"
-            onClick={() => scrollToSection('contact')}
+            onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
           >
             Let's talk
           </Button>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
+        <button
           className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -89,7 +88,7 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -97,19 +96,19 @@ export const Navbar: React.FC = () => {
           >
             <div className="px-6 flex flex-col gap-6">
               {navLinks.map((link) => (
-                <button 
+                <button
                   key={link.name}
-                  className="text-2xl font-light text-gray-300 hover:text-white tracking-tight text-left" 
+                  className="text-2xl font-light text-gray-300 hover:text-white tracking-tight text-left"
                   onClick={() => scrollToSection(link.id)}
                 >
                   {link.name}
                 </button>
               ))}
               <div className="pt-4">
-                <Button 
-                  variant="primary" 
+                <Button
+                  variant="primary"
                   className="w-full justify-center py-4"
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
                 >
                   Let's talk
                 </Button>
