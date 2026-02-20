@@ -1,3 +1,4 @@
+import { Analytics } from './components/Analytics';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Authority } from './components/Authority';
@@ -12,6 +13,7 @@ import { Footer } from './components/Footer';
 function App() {
   return (
     <div className="min-h-screen bg-navy-950 text-white font-sans selection:bg-electric-500/30">
+      <Analytics />
       <div className="bg-noise"></div>
       <Navbar />
       <main className="flex flex-col relative z-10">
