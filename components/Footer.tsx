@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center justify-center md:justify-start">
             <a href="/" className="flex items-center group transition-opacity hover:opacity-80">
-              <img src="/logo-dark.svg" alt="Glidescale" className="h-[26px] w-auto object-contain" />
+              <img src="/logo-dark.svg" alt="Glidescale" className="h-[34px] w-auto object-contain" />
             </a>
           </div>
 
