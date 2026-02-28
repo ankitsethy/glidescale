@@ -5,11 +5,10 @@ export const Footer: React.FC = () => {
     <footer className="bg-navy-950 py-16 border-t border-white/[0.04] relative z-20">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          
-          <div className="text-center md:text-left">
-            <a href="#" className="text-xl font-bold tracking-tight text-white hover:text-electric-300 transition-colors flex items-center gap-2">
-                <div className="w-2 h-2 bg-electric-500 rounded-sm"></div>
-                glidescale
+
+          <div className="flex items-center justify-center md:justify-start">
+            <a href="/" className="flex items-center group transition-opacity hover:opacity-80">
+              <img src="/logo-dark.svg" alt="Glidescale" className="h-[26px] w-auto object-contain" />
             </a>
           </div>
 

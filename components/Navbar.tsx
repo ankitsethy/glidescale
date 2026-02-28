@@ -34,22 +34,24 @@ export const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05] py-4'
-          : 'bg-transparent border-b border-transparent py-6'
+        ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05] py-4'
+        : 'bg-transparent border-b border-transparent py-6'
         }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <button
-          onClick={() => scrollToSection('home')}
-          className="text-xl font-bold tracking-tight text-white flex items-center gap-2 group focus:outline-none"
+        <a
+          href="/"
+          onClick={(e) => {
+            if (window.location.pathname === '/') {
+              e.preventDefault();
+              scrollToSection('home');
+            }
+          }}
+          className="flex items-center group focus:outline-none"
         >
-          <div className="relative w-3 h-3">
-            <div className="absolute inset-0 bg-electric-500 rounded-full animate-pulse-glow"></div>
-            <div className="absolute inset-0.5 bg-white rounded-full"></div>
-          </div>
-          <span className="group-hover:text-electric-300 transition-colors">glidescale</span>
-        </button>
+          <img src="/logo-dark.svg" alt="Glidescale" className="h-[30px] w-auto object-contain" />
+        </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-400">
