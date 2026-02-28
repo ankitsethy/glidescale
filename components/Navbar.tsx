@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
           }}
           className="flex items-center group focus:outline-none"
         >
-          <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] w-auto object-contain" />
+          <img src="/logo-dark.svg" alt="Glidescale" className="h-[48px] w-auto object-contain" />
         </a>
 
         {/* Desktop Links */}
