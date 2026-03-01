@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" ref={ref} className="relative min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-navy-950">
+    <section id="home" ref={ref} className="relative min-h-[100vh] flex items-center justify-center pt-32 lg:pt-[108px] pb-20 overflow-hidden bg-navy-950">
 
       {/* 1. Background System */}
       <div className="absolute inset-0 pointer-events-none">

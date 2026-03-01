@@ -56,12 +56,12 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-10 text-sm font-medium text-gray-400 h-full">
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-10 text-sm h-full">
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
-              className="relative hover:text-white transition-colors duration-300 py-1 group focus:outline-none"
+              className="relative transition-colors duration-300 py-1 group focus:outline-none font-semibold text-[rgba(255,255,255,0.92)] hover:text-[rgba(255,255,255,1)]"
             >
               {link.name}
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-electric-500 transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#6366F1]"></span>
