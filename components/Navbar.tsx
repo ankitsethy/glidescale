@@ -49,9 +49,9 @@ export const Navbar: React.FC = () => {
                 scrollToSection('home');
               }
             }}
-            className="flex items-center group focus:outline-none"
+            className="flex items-center group focus:outline-none transition-all duration-200 ease-in-out hover:opacity-90 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] active:opacity-80"
           >
-            <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] sm:h-[72px] w-auto max-h-[80px] object-contain" />
+            <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] sm:h-[72px] w-auto max-h-[80px] object-contain transition-transform duration-200" />
           </a>
         </div>
 
