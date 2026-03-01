@@ -33,28 +33,30 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05] py-4'
-        : 'bg-transparent border-b border-transparent py-6'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 h-[96px] ${isScrolled
+        ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05]'
+        : 'bg-transparent border-b border-transparent'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
         {/* Logo */}
-        <a
-          href="/"
-          onClick={(e) => {
-            if (window.location.pathname === '/') {
-              e.preventDefault();
-              scrollToSection('home');
-            }
-          }}
-          className="flex items-center group focus:outline-none"
-        >
-          <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] sm:h-[72px] w-auto object-contain" />
-        </a>
+        <div className="flex-1 flex items-center justify-start h-full">
+          <a
+            href="/"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                scrollToSection('home');
+              }
+            }}
+            className="flex items-center group focus:outline-none"
+          >
+            <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] sm:h-[72px] w-auto max-h-[80px] object-contain" />
+          </a>
+        </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-400">
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-10 text-sm font-medium text-gray-400 h-full">
           {navLinks.map((link) => (
             <button
               key={link.name}
@@ -67,24 +69,27 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <Button
-            variant="primary"
-            className="!py-2.5 !px-6 !text-sm !h-auto"
-            onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
-          >
-            Let's talk
-          </Button>
-        </div>
+        {/* Right side group */}
+        <div className="flex-1 flex items-center justify-end h-full">
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            <Button
+              variant="primary"
+              className="!py-2.5 !px-6 !text-sm !h-auto"
+              onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
+            >
+              Let's talk
+            </Button>
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
