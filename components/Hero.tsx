@@ -68,8 +68,8 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light antialiased"
         >
-          We redesign how growth operates inside your company. <br className="hidden md:block" />
-          Scale increases output, not complexity.
+          We redesign how growth operates inside your company —<br className="hidden md:block" />
+          replacing manual drag with AI-backed operating infrastructure.
         </motion.p>
 
         {/* Buttons */}
@@ -77,14 +77,26 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full mb-16"
         >
           <Button variant="primary" onClick={() => scrollToSection('contact')}>
-            Start Scaling
+            Book a Strategy Call
           </Button>
           <Button variant="secondary" onClick={() => scrollToSection('work')}>
-            View Workflow
+            See Our Work
           </Button>
+        </motion.div>
+
+        {/* Social Proof */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center justify-center gap-3 text-sm text-gray-500"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-electric-500 opacity-70 animate-pulse"></span>
+          <span>Working with growth-stage founders across SaaS, services &amp; agencies</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-electric-500 opacity-70 animate-pulse" style={{ animationDelay: '0.5s' }}></span>
         </motion.div>
 
       </motion.div>

@@ -4,22 +4,22 @@ import { useRef, useEffect } from 'react';
 
 const outcomes = [
     {
-        value: 95,
-        suffix: "%",
-        label: "Fast-Track Results",
-        desc: "Accelerate your growth journey with optimized infrastructure."
+        value: 8,
+        suffix: " wks",
+        label: "Avg. Time to Live Infrastructure",
+        desc: "From first call to fully deployed operating system — without months of back-and-forth."
     },
     {
-        value: 20,
-        suffix: "%",
-        label: "Increased Efficiency",
-        desc: "Uncover hidden capacity in your team's daily operations."
+        value: 30,
+        suffix: "+ hrs",
+        label: "Weekly Ops Time Reclaimed",
+        desc: "Per client, on average. Time that goes back into revenue-generating work, not manual processes."
     },
     {
-        value: 54,
-        suffix: "%",
-        label: "Strategic Advantage",
-        desc: "Gain a competitive edge through data-driven strategies."
+        value: 3,
+        suffix: "×",
+        label: "Output Without Adding Headcount",
+        desc: "AI-backed workflows multiply what your existing team can execute — no new hires required."
     }
 ];
 
@@ -44,9 +44,9 @@ export const Metrics: React.FC = () => {
             <div className="max-w-[1200px] mx-auto px-6 relative z-10">
                 <div className="text-center mb-24 max-w-2xl mx-auto">
                      <div className="inline-block px-4 py-1.5 rounded-full border border-electric-500/20 bg-electric-500/5 mb-6">
-                        <span className="text-[10px] font-bold text-electric-300 tracking-[0.2em] uppercase">Statistics</span>
+                        <span className="text-[10px] font-bold text-electric-300 tracking-[0.2em] uppercase">What to expect</span>
                      </div>
-                     <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight">The numbers that define success</h2>
+                     <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight">Real outcomes. Specific timelines.</h2>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">

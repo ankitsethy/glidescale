@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Authority: React.FC = () => {
   return (
-    <section className="py-40 relative overflow-hidden flex flex-col items-center justify-center z-10 bg-navy-950">
+    <section className="py-28 relative overflow-hidden flex flex-col items-center justify-center z-10 bg-navy-950">
       
       {/* 3D Axis Effect */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
