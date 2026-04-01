@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, BarChart2, Cpu } from 'lucide-react';
+import { Send, BarChart2, Workflow, ArrowRight } from 'lucide-react';
 
 const services = [
   {
@@ -14,7 +14,7 @@ const services = [
     description: "Unify lead capture, CRM, and pipeline visibility. We implement a single source of truth for your entire revenue operation."
   },
   {
-    icon: Cpu,
+    icon: Workflow,
     title: "Execution Frameworks",
     description: "Replace repetitive tasks with AI-backed workflows. From onboarding to support, we architect the layer that removes operational drag."
   }
@@ -30,7 +30,7 @@ export const Services: React.FC = () => {
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -46,6 +46,15 @@ export const Services: React.FC = () => {
                 engineered for speed.
               </h3>
             </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="text-gray-500 text-sm max-w-xs leading-relaxed md:text-right"
+            >
+              Three systems. One operating model. Built to work together from day one.
+            </motion.p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -69,7 +78,12 @@ export const Services: React.FC = () => {
                 
                 <h3 className="text-xl font-semibold text-white mb-4 tracking-tight group-hover:text-electric-100 transition-colors">{service.title}</h3>
                 <p className="text-gray-400 leading-relaxed text-base font-light flex-grow">{service.description}</p>
-                
+
+                <div className="mt-8 flex items-center gap-1.5 text-xs font-semibold text-electric-500/60 group-hover:text-electric-400 transition-colors duration-300">
+                  <span className="uppercase tracking-[0.15em]">Learn more</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+
                 {/* Bottom Active Line */}
                 <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-electric-500/0 to-transparent group-hover:via-electric-500/50 transition-all duration-500"></div>
               </div>

@@ -46,7 +46,7 @@ export const Process: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="relative space-y-24 mt-12 lg:mt-0">
+          <div className="relative space-y-16 md:space-y-24 mt-12 lg:mt-0">
              {/* Glowing Center Line */}
              <div className="absolute left-[20px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-electric-500 via-electric-500/20 to-transparent hidden md:block">
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-[100px] bg-electric-400 blur-[4px]"></div>

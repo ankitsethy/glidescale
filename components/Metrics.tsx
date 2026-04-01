@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useSpring, useTransform, useInView } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 
-const outcomes = [
+const outcomes: { value: number; suffix: string; qualifier?: string; label: string; desc: string }[] = [
     {
         value: 8,
         suffix: " wks",
@@ -11,8 +11,9 @@ const outcomes = [
     },
     {
         value: 30,
-        suffix: "+ hrs",
-        label: "Weekly Ops Time Reclaimed",
+        suffix: " hrs",
+        qualifier: "/wk",
+        label: "Operational Time Reclaimed",
         desc: "Per client, on average. Time that goes back into revenue-generating work, not manual processes."
     },
     {
@@ -64,8 +65,11 @@ export const Metrics: React.FC = () => {
                             
                             <div className="relative h-full p-10 flex flex-col justify-center z-10 text-left">
                                 {/* Glowing Counter */}
-                                <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 tracking-tighter mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 tracking-tighter mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-baseline gap-1">
                                     <Counter value={item.value} suffix={item.suffix} />
+                                    {item.qualifier && (
+                                        <span className="text-2xl font-medium text-white/40">{item.qualifier}</span>
+                                    )}
                                 </div>
                                 
                                 <div className="w-12 h-[2px] bg-electric-500 mb-6 opacity-50 group-hover:w-24 group-hover:opacity-100 group-hover:shadow-[0_0_10px_#6366F1] transition-all duration-500"></div>

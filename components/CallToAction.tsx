@@ -47,12 +47,22 @@ export const CallToAction: React.FC = () => {
 
           <Button
             variant="primary"
-            className="!h-20 !px-16 !text-xl !bg-white !text-navy-950 hover:!bg-electric-50 hover:!text-navy-950 font-bold"
+            className="!h-20 !px-16 !text-xl !bg-white !text-navy-950 hover:!bg-electric-100 hover:!text-navy-950 font-bold"
             onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
           >
             Let's talk
           </Button>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-8 text-sm text-gray-600"
+        >
+          No commitment. 30-minute strategy session.
+        </motion.p>
       </div>
     </section>
   );

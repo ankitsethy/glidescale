@@ -106,7 +106,7 @@ export const Navbar: React.FC = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  className="text-2xl font-light text-gray-300 hover:text-white tracking-tight text-left"
+                  className="text-xl font-semibold text-gray-300 hover:text-white tracking-tight text-left transition-colors duration-200"
                   onClick={() => scrollToSection(link.id)}
                 >
                   {link.name}
