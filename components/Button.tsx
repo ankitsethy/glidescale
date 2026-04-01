@@ -16,25 +16,24 @@ export const Button: React.FC<ButtonProps> = ({
   const baseStyles = "relative inline-flex items-center justify-center font-medium transition-all duration-300 ease-out disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group tracking-wide";
 
   const variants = {
-    // Visuo-style Glow Button
     primary: `
-      bg-electric-500 text-white rounded-[6px] px-[30px] py-[14px] min-h-[48px] font-semibold text-base 
-      shadow-[0_0_20px_-5px_rgba(99,102,241,0.4)]
-      hover:shadow-[0_0_40px_-5px_rgba(99,102,241,0.6)]
-      border border-electric-400/20
+      bg-gradient-to-b from-electric-400 to-electric-500 text-white rounded-[6px] px-[30px] py-[14px] min-h-[48px] font-semibold text-base
+      shadow-[0_0_24px_-4px_rgba(99,102,241,0.55),inset_0_1px_0_rgba(255,255,255,0.18)]
+      hover:shadow-[0_0_44px_-4px_rgba(99,102,241,0.75),inset_0_1px_0_rgba(255,255,255,0.25)]
+      border border-electric-400/30
+      hover:brightness-110
       hover:scale-[1.02] active:scale-[0.98]
-      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:animate-[shimmer_1.5s_infinite]
+      before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent before:-translate-x-full hover:before:animate-[shimmer_1.5s_infinite]
     `,
 
-    // Glass Secondary
     secondary: `
-      bg-white/[0.03] border border-white/10 text-gray-300 
-      hover:text-white hover:border-white/30 hover:bg-white/[0.08]
+      bg-white/[0.04] border border-white/12 text-gray-300
+      hover:text-white hover:border-white/25 hover:bg-white/[0.08]
       rounded-[6px] px-[30px] py-[14px] min-h-[48px] font-semibold text-base backdrop-blur-md
-      shadow-sm hover:shadow-md
+      shadow-sm hover:shadow-[0_0_20px_-8px_rgba(255,255,255,0.15)]
+      transition-all duration-300
     `,
 
-    // Text Link
     text: "text-gray-400 hover:text-white text-base hover:translate-x-1 transition-transform"
   };
 

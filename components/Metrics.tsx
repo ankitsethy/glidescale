@@ -64,8 +64,11 @@ export const Metrics: React.FC = () => {
                             <div className="absolute inset-0 glass-card rounded-2xl transition-all duration-500 group-hover:border-electric-500/40"></div>
                             
                             <div className="relative h-full p-10 flex flex-col justify-center z-10 text-left">
-                                {/* Glowing Counter */}
-                                <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 tracking-tighter mb-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-baseline gap-1">
+                                {/* Number glow */}
+                                <div className="absolute top-4 left-4 w-36 h-24 bg-electric-500/[0.06] blur-3xl rounded-full group-hover:bg-electric-500/10 transition-colors duration-500 pointer-events-none"></div>
+
+                                {/* Counter */}
+                                <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-white/95 to-electric-300/70 tracking-tighter mb-8 drop-shadow-[0_0_20px_rgba(99,102,241,0.15)] flex items-baseline gap-1">
                                     <Counter value={item.value} suffix={item.suffix} />
                                     {item.qualifier && (
                                         <span className="text-2xl font-medium text-white/40">{item.qualifier}</span>

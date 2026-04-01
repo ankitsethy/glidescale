@@ -27,20 +27,23 @@ export const Process: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-24">
           
           <div className="flex flex-col justify-center sticky top-32 self-start">
-             <motion.div 
+            {/* Subtle glow behind the sticky column */}
+            <div className="absolute -inset-8 bg-electric-500/[0.03] blur-3xl rounded-full pointer-events-none"></div>
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="relative"
             >
               <h2 className="text-xs font-bold text-electric-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                 <span className="w-6 h-[1px] bg-electric-500"></span>
-                 Methodology
+                <span className="w-6 h-[1px] bg-electric-500"></span>
+                Methodology
               </h2>
               <h3 className="text-4xl md:text-5xl font-semibold text-white mb-8 leading-[1] tracking-tight">
                 From chaos <br /> to clarity.
               </h3>
-              <p className="text-gray-400 text-lg leading-relaxed max-w-sm font-light border-l border-white/10 pl-6">
+              <p className="text-gray-400 text-lg leading-relaxed max-w-sm font-light border-l border-electric-500/20 pl-6">
                 We do not sell tools. <br/> We redesign operating models for the modern era.
               </p>
             </motion.div>
@@ -67,7 +70,7 @@ export const Process: React.FC = () => {
                 </div>
 
                 {/* Large Background Number */}
-                <span className="absolute -top-12 -left-4 text-9xl font-bold text-white/[0.02] select-none pointer-events-none group-hover:text-electric-500/[0.04] transition-colors duration-500">
+                <span className="absolute -top-12 -left-4 text-9xl font-bold text-white/[0.04] select-none pointer-events-none group-hover:text-electric-500/[0.07] transition-colors duration-500">
                     {step.num}
                 </span>
 

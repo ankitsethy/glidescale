@@ -24,6 +24,7 @@ export default {
           400: '#818CF8',
           300: '#A5B4FC',
           100: '#E0E7FF',
+          50:  '#F0EFFE',
           glow: 'rgba(99, 102, 241, 0.5)',
         },
       },
@@ -36,6 +37,7 @@ export default {
         'float': 'float 10s ease-in-out infinite',
         'pulse-glow': 'pulseGlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'spin-slow': 'spin 20s linear infinite',
+        'breathe': 'breathe 6s ease-in-out infinite',
       },
       keyframes: {
         shimmer: {
@@ -49,6 +51,10 @@ export default {
         pulseGlow: {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '1' },
+        },
+        breathe: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%': { opacity: '0.7', transform: 'scale(1.04)' },
         },
       },
     },
