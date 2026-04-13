@@ -1,79 +1,87 @@
 import React from 'react';
-import { Button } from './Button';
 import { motion } from 'framer-motion';
+import { PrimaryCTA, SectionEyebrow } from './Primitives';
 
 export const CallToAction: React.FC = () => {
   return (
-    <section id="contact" className="py-48 relative overflow-hidden flex items-center justify-center z-20 bg-navy-950">
+    <section
+      id="contact"
+      className="relative py-44 lg:py-56 overflow-hidden flex items-center justify-center"
+    >
+      {/* Big multi-layer glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[800px] bg-accent/15 blur-[160px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-accent/20 blur-[100px] rounded-full pointer-events-none"></div>
 
-      {/* Multi-layer glow — outer, mid, inner */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[700px] bg-electric-500/[0.08] rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-electric-400/[0.1] rounded-full blur-[80px] pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[200px] bg-electric-300/[0.08] rounded-full blur-[40px] pointer-events-none"></div>
-
-      {/* Decorative rings */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-electric-500/[0.06] rounded-full pointer-events-none animate-breathe"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-electric-500/[0.08] rounded-full pointer-events-none animate-breathe" style={{ animationDelay: '1.5s' }}></div>
-
-      {/* Grid */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:50px_50px] opacity-[0.03]"></div>
+      {/* Dot grid masked */}
+      <div
+        className="absolute inset-0 mask-fade-radial opacity-50 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mb-10"
+          transition={{ duration: 0.7 }}
+          className="inline-flex mb-10"
         >
-          <span className="inline-block py-2 px-6 rounded-full bg-electric-500/10 border border-electric-500/20 text-electric-300 text-[11px] uppercase tracking-[0.2em] font-bold shadow-[0_0_20px_rgba(99,102,241,0.25)]">
-            Limited capacity
-          </span>
+          <SectionEyebrow center>Limited Capacity</SectionEyebrow>
         </motion.div>
 
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-6xl md:text-8xl font-bold text-white mb-16 tracking-tight leading-[1.05]"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display font-semibold text-ink leading-[1.03] tracking-tighter text-[clamp(48px,8vw,108px)]"
         >
           Scale without <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-300 via-white to-electric-400 bg-[length:200%_auto] animate-shimmer">
-            operational drag.
-          </span>
+          <span className="text-gradient-shimmer">operational drag.</span>
         </motion.h2>
 
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.18 }}
+          className="mt-10 text-lg md:text-xl text-ink-dim font-light max-w-xl mx-auto leading-relaxed"
+        >
+          A 30-minute strategy session. No commitment. We map the bottlenecks
+          and show you what removing them looks like.
+        </motion.p>
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="relative inline-block group"
+          transition={{ duration: 0.7, delay: 0.28 }}
+          className="mt-14"
         >
-          {/* Button aura */}
-          <div className="absolute -inset-2 bg-electric-500/20 rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-          <Button
-            variant="primary"
-            className="!h-20 !px-16 !text-xl !bg-white !text-navy-950 hover:!bg-electric-50 hover:!text-navy-950 font-bold relative"
+          <PrimaryCTA
+            pulse
             onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
+            className="!min-h-[64px] !px-12 !text-base"
           >
-            Let's talk
-          </Button>
+            Book your strategy call
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </PrimaryCTA>
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-8 text-sm text-gray-600"
+          transition={{ delay: 0.4 }}
+          className="mt-8 text-sm text-ink-mute"
         >
-          No commitment. 30-minute strategy session.
+          30-minute call · No prep required · Replies within 24 hours
         </motion.p>
-
       </div>
     </section>
   );

@@ -1,125 +1,119 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PrimaryCTA } from './Primitives';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 16);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    else if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navLinks = [
-    { name: 'Home', id: 'home' },
     { name: 'Services', id: 'work' },
+    { name: 'Methodology', id: 'work' },
     { name: 'About', id: 'founder' },
     { name: 'Contact', id: 'contact' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 h-[96px] ${isScrolled
-        ? 'bg-navy-950/70 backdrop-blur-xl border-b border-white/[0.05]'
-        : 'bg-transparent border-b border-transparent'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'h-[72px] bg-base/70 backdrop-blur-xl border-b border-white/[0.06]'
+          : 'h-[88px] bg-transparent border-b border-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+      <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between relative">
         {/* Logo */}
-        <div className="flex-1 flex items-center justify-start h-full">
-          <a
-            href="/"
-            onClick={(e) => {
-              if (window.location.pathname === '/') {
-                e.preventDefault();
-                scrollToSection('home');
-              }
-            }}
-            className="flex items-center group focus:outline-none transition-all duration-200 ease-in-out hover:opacity-90 hover:scale-[1.02] hover:brightness-110 active:scale-[0.98] active:opacity-80"
-          >
-            <img src="/logo-dark.svg" alt="Glidescale" className="h-[40px] sm:h-[72px] w-auto max-h-[80px] object-contain transition-transform duration-200" />
-          </a>
-        </div>
+        <a
+          href="/"
+          onClick={(e) => {
+            if (window.location.pathname === '/') {
+              e.preventDefault();
+              scrollToSection('home');
+            }
+          }}
+          className="flex items-center group transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <img
+            src="/logo-dark.svg"
+            alt="Glidescale"
+            className="h-10 sm:h-14 w-auto object-contain"
+          />
+        </a>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-10 text-sm h-full">
+        {/* Desktop links */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-9 text-sm">
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
-              className="relative transition-colors duration-300 py-1 group focus:outline-none font-semibold text-[rgba(255,255,255,0.92)] hover:text-[rgba(255,255,255,1)]"
+              className="relative text-ink-dim hover:text-ink transition-colors duration-300 font-medium tracking-tight group"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-electric-500 transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#6366F1]"></span>
+              <span className="absolute -bottom-1.5 left-0 right-0 mx-auto w-0 h-px bg-accent group-hover:w-full transition-all duration-300 shadow-[0_0_8px_#7C5CFF]"></span>
             </button>
           ))}
         </div>
 
-        {/* Right side group */}
-        <div className="flex-1 flex items-center justify-end h-full">
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Button
-              variant="primary"
-              className="!py-2.5 !px-6 !text-sm !h-auto"
-              onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
-            >
-              Let's talk
-            </Button>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden text-white p-2 hover:bg-white/5 rounded-full transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        {/* CTA */}
+        <div className="hidden md:flex">
+          <PrimaryCTA
+            onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
+            className="!min-h-[42px] !py-2.5 !px-5 !text-sm"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Let's talk
+          </PrimaryCTA>
         </div>
+
+        {/* Mobile toggle */}
+        <button
+          className="md:hidden text-ink p-2 hover:bg-white/5 rounded-lg transition-colors"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-0 left-0 right-0 bg-navy-950/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden md:hidden pt-20 pb-8"
+            className="absolute top-full left-0 right-0 bg-base/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden md:hidden"
           >
-            <div className="px-6 flex flex-col gap-6">
+            <div className="px-6 py-8 flex flex-col gap-5">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  className="text-xl font-semibold text-gray-300 hover:text-white tracking-tight text-left transition-colors duration-200"
                   onClick={() => scrollToSection(link.id)}
+                  className="text-xl font-medium text-ink-dim hover:text-ink text-left transition-colors"
                 >
                   {link.name}
                 </button>
               ))}
               <div className="pt-4">
-                <Button
-                  variant="primary"
-                  className="w-full justify-center py-4"
+                <PrimaryCTA
                   onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
+                  className="w-full justify-center"
                 >
                   Let's talk
-                </Button>
+                </PrimaryCTA>
               </div>
             </div>
           </motion.div>

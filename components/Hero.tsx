@@ -1,18 +1,9 @@
-import React, { useRef } from 'react';
-import { Button } from './Button';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { PrimaryCTA, SecondaryCTA, SectionEyebrow } from './Primitives';
+import { SystemDiagram } from './SystemDiagram';
 
 export const Hero: React.FC = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const nodesY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -21,97 +12,119 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" ref={ref} className="relative min-h-[100vh] flex items-center justify-center pt-32 lg:pt-[108px] pb-20 overflow-hidden bg-navy-950">
-
-      {/* Background System */}
+    <section
+      id="home"
+      className="relative min-h-[100vh] pt-36 lg:pt-[120px] pb-24 lg:pb-32 overflow-hidden"
+    >
+      {/* Background system */}
       <div className="absolute inset-0 pointer-events-none">
-
-        {/* Primary radial glow — top center */}
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[120%] h-[1000px] bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18)_0%,transparent_60%)] blur-[100px]"></div>
-
-        {/* Secondary focused glow — tighter, centered on text */}
-        <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.07)_0%,transparent_70%)] blur-[60px]"></div>
-
-        {/* Grid */}
-        <div className="absolute inset-0 bg-grid-pattern bg-[length:60px_60px] opacity-[0.04]"></div>
-
-        {/* Orbit rings — large, static, centered */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] border border-electric-500/[0.04] rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] border border-electric-500/[0.055] rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] border border-electric-500/[0.07] rounded-full"></div>
-
-        {/* Horizontal beam at center */}
-        <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-electric-500/[0.07] to-transparent"></div>
-
-        {/* Floating Particles */}
-        <motion.div style={{ y: nodesY }} className="absolute inset-0">
-          <div className="absolute top-[18%] left-[8%]  w-2   h-2   bg-electric-500  rounded-full blur-[2px]  opacity-40 animate-float" style={{ animationDuration: '15s' }}></div>
-          <div className="absolute top-[38%] right-[13%] w-1   h-1   bg-white         rounded-full blur-[1px]  opacity-25 animate-float" style={{ animationDelay: '2s', animationDuration: '18s' }}></div>
-          <div className="absolute bottom-[22%] left-[18%] w-3  h-3   bg-electric-300 rounded-full blur-[4px]  opacity-15 animate-float" style={{ animationDelay: '5s', animationDuration: '20s' }}></div>
-          <div className="absolute top-[55%] left-[45%]  w-1.5 h-1.5 bg-electric-400  rounded-full blur-[2px]  opacity-30 animate-float" style={{ animationDelay: '3s', animationDuration: '14s' }}></div>
-          <div className="absolute top-[25%] right-[30%] w-1   h-1   bg-electric-300  rounded-full blur-[1px]  opacity-20 animate-float" style={{ animationDelay: '7s', animationDuration: '22s' }}></div>
-          <div className="absolute bottom-[35%] right-[22%] w-2  h-2  bg-white         rounded-full blur-[2px]  opacity-15 animate-float" style={{ animationDelay: '1s', animationDuration: '17s' }}></div>
-          <div className="absolute top-[70%] left-[60%]  w-1   h-1   bg-electric-500  rounded-full blur-[1px]  opacity-35 animate-float" style={{ animationDelay: '4s', animationDuration: '19s' }}></div>
-        </motion.div>
+        {/* Dot grid with radial mask */}
+        <div
+          className="absolute inset-0 mask-fade-radial opacity-[0.55]"
+          style={{
+            backgroundImage:
+              'radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+        {/* Top center radial glow */}
+        <div className="orb top-[-180px] left-1/2 -translate-x-1/2 w-[1100px] h-[700px] bg-accent/20 opacity-60"></div>
+        {/* Side orbs */}
+        <div className="orb top-[20%] -left-32 w-[420px] h-[420px] bg-accent/15 opacity-50"></div>
+        <div className="orb top-[40%] -right-32 w-[480px] h-[480px] bg-accent/15 opacity-40"></div>
+        {/* Bottom fade to base */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#07070C]"></div>
       </div>
 
-      <motion.div
-        style={{ y: textY, opacity }}
-        className="relative z-10 max-w-[1200px] mx-auto px-6 text-center flex flex-col items-center"
-      >
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-[6rem] font-bold text-white tracking-tight leading-[1.05] mb-8 max-w-5xl mx-auto relative"
-        >
-          AI systems that remove <br className="hidden md:block" /> bottlenecks and
-          <span className="relative inline-block ml-3 text-transparent bg-clip-text bg-gradient-to-r from-electric-300 via-white to-electric-400 bg-[length:200%_auto] animate-shimmer">
-            unlock scale.
-            <div className="absolute inset-0 bg-electric-500/15 blur-2xl -z-10"></div>
-          </span>
-        </motion.h1>
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* Left: copy */}
+          <div className="lg:col-span-7 text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex"
+            >
+              <SectionEyebrow center>AI Infrastructure & Growth Systems</SectionEyebrow>
+            </motion.div>
 
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light antialiased"
-        >
-          We redesign how growth operates inside your company —<br className="hidden md:block" />
-          replacing manual drag with AI-backed operating infrastructure.
-        </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 font-display font-semibold text-ink leading-[1.04] tracking-tighter text-[clamp(44px,7vw,92px)]"
+            >
+              AI systems that <br className="hidden md:block" />
+              remove bottlenecks <br className="hidden md:block" />
+              and{' '}
+              <span className="text-gradient-shimmer">unlock scale.</span>
+            </motion.h1>
 
-        {/* Buttons */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.18 }}
+              className="mt-8 text-lg md:text-xl text-ink-dim max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
+            >
+              We redesign how growth operates inside your company,
+              replacing manual drag with AI-backed operating infrastructure.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.28 }}
+              className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+            >
+              <PrimaryCTA pulse onClick={() => scrollToSection('contact')}>
+                Book a Strategy Call
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </PrimaryCTA>
+              <SecondaryCTA onClick={() => scrollToSection('work')}>
+                See How We Work
+              </SecondaryCTA>
+            </motion.div>
+          </div>
+
+          {/* Right: system diagram */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative mt-4 lg:mt-0"
+          >
+            <SystemDiagram />
+          </motion.div>
+        </div>
+
+        {/* Marquee strip */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full mb-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+          className="mt-20 lg:mt-24 mask-fade-edges overflow-hidden"
         >
-          <Button variant="primary" onClick={() => scrollToSection('contact')}>
-            Book a Strategy Call
-          </Button>
-          <Button variant="secondary" onClick={() => scrollToSection('work')}>
-            See Our Work
-          </Button>
+          <div className="marquee gap-12 text-sm text-ink-mute font-medium tracking-wide">
+            {Array.from({ length: 2 }).map((_, copy) => (
+              <div key={copy} className="flex items-center gap-12 pr-12 whitespace-nowrap">
+                <span>Working with growth-stage founders across SaaS, services & agencies</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                <span>Outbound infrastructure</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent/60"></span>
+                <span>Revenue architecture</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                <span>Execution frameworks</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent/60"></span>
+                <span>Deployed in 8 weeks</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+              </div>
+            ))}
+          </div>
         </motion.div>
-
-        {/* Social Proof */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center gap-3 text-sm text-gray-500"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-electric-500 opacity-70 animate-pulse"></span>
-          <span>Working with growth-stage founders across SaaS, services &amp; agencies</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-electric-500 opacity-70 animate-pulse" style={{ animationDelay: '0.5s' }}></span>
-        </motion.div>
-
-      </motion.div>
+      </div>
     </section>
   );
 };

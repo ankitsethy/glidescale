@@ -3,38 +3,39 @@ import { motion } from 'framer-motion';
 
 export const Authority: React.FC = () => {
   return (
-    <section className="py-28 relative overflow-hidden flex flex-col items-center justify-center z-10 bg-navy-950">
+    <section className="relative py-32 lg:py-40 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-accent/10 blur-[140px] rounded-full pointer-events-none"></div>
 
-      {/* Static geometric background — elegant, no animation */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Vertical line */}
-        <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-electric-500/12 to-transparent"></div>
-        {/* Horizontal line */}
-        <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-electric-500/12 to-transparent"></div>
-
-        {/* Concentric rings — static, no spinning */}
-        <div className="absolute w-[520px] h-[520px] border border-electric-500/[0.06] rounded-full animate-breathe" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute w-[340px] h-[340px] border border-electric-500/[0.08] rounded-full animate-breathe" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute w-[180px] h-[180px] border border-electric-500/[0.1] rounded-full animate-breathe" style={{ animationDelay: '2s' }}></div>
-
-        {/* Center dot */}
-        <div className="absolute w-2 h-2 rounded-full bg-electric-500/40 blur-[3px]"></div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+        {/* Top divider */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mx-auto h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent mb-12"
+        />
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display font-semibold text-ink leading-[1.05] tracking-tighter text-[clamp(36px,6vw,80px)]"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.15]">
-            Growth does not break businesses. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-300 via-electric-400 to-electric-300 bg-[length:200%_auto] animate-shimmer">
-              Poor systems do.
-            </span>
-          </h2>
-        </motion.div>
+          Growth does not <br />
+          break businesses. <br />
+          <span className="text-gradient-accent">Poor systems do.</span>
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mx-auto h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent mt-14"
+        />
       </div>
     </section>
   );

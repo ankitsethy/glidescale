@@ -1,97 +1,140 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, BarChart2, Workflow, ArrowRight } from 'lucide-react';
+import { GradientBorderCard, SectionEyebrow } from './Primitives';
+
+const OutboundIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+    <defs>
+      <linearGradient id="outIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#B6A3FF" />
+        <stop offset="100%" stopColor="#7C5CFF" />
+      </linearGradient>
+    </defs>
+    <circle cx="10" cy="24" r="3" stroke="url(#outIcon)" strokeWidth="1.6" />
+    <circle cx="38" cy="10" r="3" stroke="url(#outIcon)" strokeWidth="1.6" />
+    <circle cx="38" cy="24" r="3" stroke="url(#outIcon)" strokeWidth="1.6" />
+    <circle cx="38" cy="38" r="3" stroke="url(#outIcon)" strokeWidth="1.6" />
+    <path d="M13 24L35 10M13 24h22M13 24L35 38" stroke="url(#outIcon)" strokeWidth="1.4" strokeLinecap="round" />
+    <circle cx="10" cy="24" r="1.4" fill="#9C82FF" />
+  </svg>
+);
+
+const RevenueIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+    <defs>
+      <linearGradient id="revIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#B6A3FF" />
+        <stop offset="100%" stopColor="#7C5CFF" />
+      </linearGradient>
+    </defs>
+    <rect x="6" y="22" width="6" height="18" rx="1" stroke="url(#revIcon)" strokeWidth="1.6" />
+    <rect x="18" y="14" width="6" height="26" rx="1" stroke="url(#revIcon)" strokeWidth="1.6" />
+    <rect x="30" y="6" width="6" height="34" rx="1" stroke="url(#revIcon)" strokeWidth="1.6" />
+    <path d="M9 22V18M21 14V10M33 6V4" stroke="url(#revIcon)" strokeWidth="1.4" strokeLinecap="round" />
+    <circle cx="9" cy="16" r="1.6" fill="#9C82FF" />
+    <circle cx="21" cy="8" r="1.6" fill="#9C82FF" />
+    <circle cx="33" cy="2.5" r="1.6" fill="#9C82FF" />
+  </svg>
+);
+
+const ExecutionIcon = () => (
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+    <defs>
+      <linearGradient id="exIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#B6A3FF" />
+        <stop offset="100%" stopColor="#7C5CFF" />
+      </linearGradient>
+    </defs>
+    <path d="M24 4l4 8 8 1.4-6 6 1.4 8.6L24 24l-7.4 4 1.4-8.6-6-6L20 12z" stroke="url(#exIcon)" strokeWidth="1.6" strokeLinejoin="round" />
+    <path d="M14 38h20M18 44h12" stroke="url(#exIcon)" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
 
 const services = [
   {
-    icon: Send,
-    title: "Outbound Infrastructure",
-    description: "Install cold outreach systems that execute predictably. We engineer pipelines that deliver qualified meetings without manual input."
+    icon: <OutboundIcon />,
+    title: 'Outbound Infrastructure',
+    description:
+      'Install cold outreach systems that execute predictably. We engineer pipelines that deliver qualified meetings without manual input.',
   },
   {
-    icon: BarChart2,
-    title: "Revenue Architecture",
-    description: "Unify lead capture, CRM, and pipeline visibility. We implement a single source of truth for your entire revenue operation."
+    icon: <RevenueIcon />,
+    title: 'Revenue Architecture',
+    description:
+      'Unify lead capture, CRM, and pipeline visibility. We implement a single source of truth for your entire revenue operation.',
   },
   {
-    icon: Workflow,
-    title: "Execution Frameworks",
-    description: "Replace repetitive tasks with AI-backed workflows. From onboarding to support, we architect the layer that removes operational drag."
-  }
+    icon: <ExecutionIcon />,
+    title: 'Execution Frameworks',
+    description:
+      'Replace repetitive tasks with AI-backed workflows. From onboarding to support, we architect the layer that removes operational drag.',
+  },
 ];
 
 export const Services: React.FC = () => {
   return (
-    <section id="work" className="py-32 relative overflow-hidden z-20 bg-[#080D1C]">
-
-      {/* Architectural Grid */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-[0.05]"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#060A14] via-transparent to-[#060A14]"></div>
+    <section id="work" className="relative py-32 lg:py-40 overflow-hidden">
+      {/* Background grid + glow */}
+      <div className="absolute inset-0 bg-grid-pattern bg-[length:60px_60px] opacity-[0.04] pointer-events-none mask-fade-radial"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-accent/10 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <h2 className="text-xs font-bold text-electric-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-              <span className="w-6 h-[1px] bg-electric-500"></span>
-              Infrastructure
-            </h2>
-            <h3 className="text-3xl md:text-5xl font-semibold text-white leading-tight tracking-tight">
+            <SectionEyebrow>Infrastructure</SectionEyebrow>
+            <h2 className="mt-5 font-display font-semibold text-ink leading-[1.06] tracking-tighter text-[clamp(34px,5vw,64px)]">
               Built for scale, <br />
               engineered for speed.
-            </h3>
+            </h2>
           </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-gray-500 text-sm max-w-xs leading-relaxed md:text-right"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-ink-dim text-sm md:text-base max-w-xs leading-relaxed md:text-right"
           >
-            Three systems. One operating model. Built to work together from day one.
+            Three systems. One operating model. <br />
+            Built to work together from day one.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-7">
+          {services.map((s, i) => (
             <motion.div
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative h-full"
+              transition={{ duration: 0.6, delay: i * 0.12 }}
             >
-              <div className="relative h-full p-10 rounded-2xl glass-card flex flex-col overflow-hidden">
-
-                {/* Faint card index number */}
-                <span className="absolute top-5 right-7 text-7xl font-bold text-white/[0.03] select-none tracking-tighter leading-none pointer-events-none group-hover:text-electric-500/[0.06] transition-colors duration-500">
-                  {String(index + 1).padStart(2, '0')}
+              <GradientBorderCard className="relative group h-full p-9 lg:p-10 overflow-hidden">
+                {/* Faded numeral */}
+                <span className="pointer-events-none absolute -top-2 right-6 font-display font-bold text-[110px] leading-none text-white/[0.035] group-hover:text-accent/[0.08] transition-colors duration-700 select-none tracking-tighter">
+                  {String(i + 1).padStart(2, '0')}
                 </span>
 
-                {/* Upgraded icon container */}
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-8 relative shrink-0">
-                  <div className="absolute inset-0 rounded-xl bg-electric-500/[0.08] border border-electric-500/20"></div>
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-electric-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-                  <service.icon className="w-5 h-5 text-electric-400/80 group-hover:text-electric-300 transition-colors relative z-10" strokeWidth={1.5} />
+                <div className="relative">
+                  <div className="mb-8">{s.icon}</div>
+                  <h3 className="font-display font-semibold text-2xl text-ink mb-4 tracking-tightx">
+                    {s.title}
+                  </h3>
+                  <p className="text-ink-dim leading-relaxed font-light">{s.description}</p>
+
+                  <div className="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-300/80 group-hover:text-accent-200 transition-colors">
+                    Learn more
+                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+                      →
+                    </span>
+                  </div>
                 </div>
-
-                <h3 className="text-xl font-semibold text-white mb-4 tracking-tight group-hover:text-electric-100 transition-colors">{service.title}</h3>
-                <p className="text-gray-400 leading-relaxed text-base font-light flex-grow">{service.description}</p>
-
-                <div className="mt-8 flex items-center gap-1.5 text-xs font-semibold text-electric-500/50 group-hover:text-electric-400 transition-colors duration-300">
-                  <span className="uppercase tracking-[0.15em]">Learn more</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
-
-                {/* Bottom active line */}
-                <div className="absolute bottom-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-electric-500/0 to-transparent group-hover:via-electric-500/50 transition-all duration-500"></div>
-              </div>
+              </GradientBorderCard>
             </motion.div>
           ))}
         </div>
