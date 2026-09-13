@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { generateStrategy } from '../services/geminiService';
+import { generateStrategy, isStrategyGeneratorEnabled } from '../services/geminiService';
 import { Button } from './Button';
 import { Sparkles, Loader2, ArrowRight } from 'lucide-react';
 import { LoadingState } from '../types';
@@ -10,10 +10,11 @@ export const StrategyGenerator: React.FC = () => {
   const [goal, setGoal] = useState('');
   const [status, setStatus] = useState<LoadingState>(LoadingState.IDLE);
   const [result, setResult] = useState('');
+  const enabled = isStrategyGeneratorEnabled();
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!industry || !goal) return;
+    if (!industry || !goal || status === LoadingState.LOADING) return;
 
     setStatus(LoadingState.LOADING);
     try {
@@ -71,15 +72,18 @@ export const StrategyGenerator: React.FC = () => {
                                 className="w-full bg-navy-800/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-electric-500 focus:ring-1 focus:ring-electric-500 transition-all duration-300 backdrop-blur-sm"
                             />
                         </div>
-                        <Button 
-                            type="submit" 
-                            disabled={status === LoadingState.LOADING || !industry || !goal}
+                        <Button
+                            type="submit"
+                            disabled={!enabled || status === LoadingState.LOADING || !industry || !goal}
                             className="w-full justify-center mt-4"
                         >
                             {status === LoadingState.LOADING ? (
                                 <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Analyzing...</>
                             ) : 'Generate Strategy Map'}
                         </Button>
+                        {!enabled && (
+                            <p className="text-xs text-gray-500 pt-1">Demo temporarily unavailable.</p>
+                        )}
                     </form>
                 </motion.div>
 

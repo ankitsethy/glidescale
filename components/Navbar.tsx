@@ -15,6 +15,12 @@ export const Navbar: React.FC = () => {
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
+
+    if (window.location.pathname !== '/') {
+      window.location.href = id === 'home' ? '/' : `/#${id}`;
+      return;
+    }
+
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     else if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });

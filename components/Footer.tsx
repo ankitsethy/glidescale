@@ -33,8 +33,8 @@ const cols = [
     title: 'Contact',
     links: [
       { label: 'Book a Call', href: 'https://cal.com/ankitsethy/30', external: true },
-      { label: 'LinkedIn', href: 'https://linkedin.com/in/ankitsethy', external: true },
-      { label: 'hello@glidescales.com', href: 'mailto:hello@glidescales.com', external: true },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ankit-sethy-/', external: true },
+      { label: 'ankitsethy.ai@gmail.com', href: 'mailto:ankitsethy.ai@gmail.com', external: true },
     ],
   },
 ];
@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
             </p>
             <div className="mt-8 flex items-center gap-3">
               <a
-                href="https://linkedin.com/in/ankitsethy"
+                href="https://www.linkedin.com/in/ankit-sethy-/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -71,7 +71,7 @@ export const Footer: React.FC = () => {
                 <LinkedInIcon />
               </a>
               <a
-                href="https://x.com/ankitsethy"
+                href="https://x.com/ankitsethy_"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
           <span>© {new Date().getFullYear()} GlideScale AI Inc. All rights reserved.</span>
           <div className="flex items-center gap-5">
             <a href="/privacy" className="hover:text-ink-dim transition-colors">Privacy</a>
-            <a href="/privacy" className="hover:text-ink-dim transition-colors">Terms</a>
+            <a href="/contact" className="hover:text-ink-dim transition-colors">Contact</a>
           </div>
         </div>
       </div>

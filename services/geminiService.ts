@@ -2,16 +2,17 @@ import { GoogleGenAI } from "@google/genai";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY as string;
 
-if (!apiKey) {
-  throw new Error(
-    "Missing VITE_GEMINI_API_KEY environment variable. " +
-    "Add it to your .env.local file or Vercel environment settings."
-  );
-}
-
-const ai = new GoogleGenAI({ apiKey });
+export const isStrategyGeneratorEnabled = (): boolean => Boolean(apiKey);
 
 export const generateStrategy = async (industry: string, goal: string): Promise<string> => {
+  if (!apiKey) {
+    throw new Error(
+      "Missing VITE_GEMINI_API_KEY environment variable. " +
+      "Add it to your .env.local file or Vercel environment settings."
+    );
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash-preview-05-20",
     contents: `You are a high-end enterprise AI consultant.
@@ -25,5 +26,9 @@ export const generateStrategy = async (industry: string, goal: string): Promise<
       Each point should be one sentence bolded (using <strong>), followed by one sentence of explanation.`,
   });
 
-  return response.text ?? "Unable to generate strategy at this time.";
+  if (!response.text || response.text.trim().length === 0) {
+    throw new Error("Empty response from Gemini.");
+  }
+
+  return response.text;
 };

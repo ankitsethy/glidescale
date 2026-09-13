@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PrimaryCTA, SecondaryCTA, SectionEyebrow } from './Primitives';
-import { SystemDiagram } from './SystemDiagram';
 
 export const Hero: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -37,66 +36,51 @@ export const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-          {/* Left: copy */}
-          <div className="lg:col-span-7 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex"
-            >
-              <SectionEyebrow center>AI Infrastructure & Growth Systems</SectionEyebrow>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 font-display font-semibold text-ink leading-[1.04] tracking-tighter text-[clamp(44px,7vw,92px)]"
-            >
-              AI systems that <br className="hidden md:block" />
-              remove bottlenecks <br className="hidden md:block" />
-              and{' '}
-              <span className="text-gradient-shimmer">unlock scale.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.18 }}
-              className="mt-8 text-lg md:text-xl text-ink-dim max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
-            >
-              We redesign how growth operates inside your company,
-              replacing manual drag with AI-backed operating infrastructure.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.28 }}
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
-            >
-              <PrimaryCTA pulse onClick={() => scrollToSection('contact')}>
-                Book a Strategy Call
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </PrimaryCTA>
-              <SecondaryCTA onClick={() => scrollToSection('work')}>
-                See How We Work
-              </SecondaryCTA>
-            </motion.div>
-          </div>
-
-          {/* Right: system diagram */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 relative mt-4 lg:mt-0"
+            transition={{ duration: 0.6 }}
+            className="inline-flex"
           >
-            <SystemDiagram />
+            <SectionEyebrow center>AI Infrastructure & Growth Systems</SectionEyebrow>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 font-display font-semibold text-ink leading-[1.1] tracking-tight text-[clamp(44px,7vw,84px)]"
+          >
+            AI systems that remove bottlenecks and{' '}
+            <span className="text-gradient-shimmer">unlock scale.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.18 }}
+            className="mt-8 text-lg md:text-xl text-ink-dim max-w-xl mx-auto leading-relaxed font-light"
+          >
+            We redesign how growth operates inside your company,
+            replacing manual drag with AI-backed operating infrastructure.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.28 }}
+            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <PrimaryCTA pulse onClick={() => scrollToSection('contact')}>
+              Book a Strategy Call
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </PrimaryCTA>
+            <SecondaryCTA onClick={() => scrollToSection('work')}>
+              See How We Work
+            </SecondaryCTA>
           </motion.div>
         </div>
 

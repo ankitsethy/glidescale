@@ -73,11 +73,12 @@ export const Founder: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
-                href="https://linkedin.com/in/ankitsethy"
+                href="https://www.linkedin.com/in/ankit-sethy-/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 className="inline-flex items-center gap-2.5 text-sm text-ink-dim hover:text-accent-200 transition-colors duration-200 group"
               >
                 <span className="w-9 h-9 rounded-full border border-white/10 group-hover:border-accent/40 flex items-center justify-center transition-colors">
@@ -87,6 +88,26 @@ export const Founder: React.FC = () => {
                 </span>
                 <span className="font-medium tracking-wide">Connect on LinkedIn</span>
                 <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="https://x.com/ankitsethy_"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="w-9 h-9 rounded-full border border-white/10 hover:border-accent/40 text-ink-dim hover:text-accent-200 flex items-center justify-center transition-colors"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a
+                href="mailto:ankitsethy.ai@gmail.com"
+                aria-label="Email"
+                className="w-9 h-9 rounded-full border border-white/10 hover:border-accent/40 text-ink-dim hover:text-accent-200 flex items-center justify-center transition-colors"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M1.5 4.5A1.5 1.5 0 0 1 3 3h18a1.5 1.5 0 0 1 1.5 1.5v15A1.5 1.5 0 0 1 21 21H3a1.5 1.5 0 0 1-1.5-1.5v-15zm2.4.5 8.1 6.3L20.1 5H3.9zm16.6 1.4-8.1 6.3a1 1 0 0 1-1.2 0L3.5 6.4V19h17V6.4z" />
+                </svg>
               </a>
             </div>
           </motion.div>

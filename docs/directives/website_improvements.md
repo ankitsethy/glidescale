@@ -17,7 +17,7 @@
 
 ## Priority 1 — Conversion Killers (Fix First)
 
-### [ ] Add StrategyGenerator to the live page
+### [x] Add StrategyGenerator to the live page — done 2026-09-13
 **File**: [App.tsx](../glidescale%20antigravity%20file/App.tsx)  
 **What**: `StrategyGenerator.tsx` is built but not in `App.tsx`. This is the most differentiating feature on the site — an interactive AI demo — and it's invisible.  
 **Fix**: Import `StrategyGenerator` in `App.tsx` and render it between `<Process />` and `<Founder />` (or after `<Services />`). Good positioning: after the process section, right when the visitor is asking "but does this actually work?"  
@@ -48,7 +48,7 @@
 
 ## Priority 2 — Credibility & Trust
 
-### [ ] Fix "Learn more" dead links in Services cards
+### [x] Fix "Learn more" dead links in Services cards — done 2026-09-13
 **File**: [components/Services.tsx](../glidescale%20antigravity%20file/components/Services.tsx) line 130  
 **What**: Each service card has "Learn more →" text that looks clickable but has no `href` or `onClick` handler.  
 **Fix options**:
@@ -58,13 +58,13 @@
 **Recommended**: Option 2 (scroll to contact) — simplest, keeps the CTA flow  
 **Effort**: Low (15 min)
 
-### [ ] Verify founder photo exists in production
+### [x] Verify founder photo exists in production — confirmed present 2026-09-13
 **File**: [components/Founder.tsx](../glidescale%20antigravity%20file/components/Founder.tsx) line 26  
 **What**: Primary image is `/ankit.jpg`. Falls back to a Google Drive URL, then an Unsplash stock photo.  
 **Fix**: Confirm `ankit.jpg` exists in `glidescale antigravity file/public/` and is deployed to Vercel. Check the live site — if you see a generic stock photo, the file is missing.  
 **Effort**: Very low (5 min to check)
 
-### [ ] Add a defensive state to StrategyGenerator when API key is missing
+### [x] Add a defensive state to StrategyGenerator when API key is missing — done 2026-09-13
 **File**: [components/StrategyGenerator.tsx](../glidescale%20antigravity%20file/components/StrategyGenerator.tsx)  
 **What**: If `VITE_GEMINI_API_KEY` is not set, the component should show a graceful disabled state, not silently fail.  
 **Fix**: On mount, check `import.meta.env.VITE_GEMINI_API_KEY`. If absent, render a "Demo temporarily unavailable" placeholder.  
@@ -97,19 +97,19 @@
 
 ## Priority 4 — Technical Improvements
 
-### [ ] Handle empty Gemini response in StrategyGenerator
+### [x] Handle empty Gemini response in StrategyGenerator — done 2026-09-13
 **File**: `components/StrategyGenerator.tsx` / `services/geminiService.ts`  
 **What**: Gemini occasionally returns empty strings. Current code may set state to empty and render a blank result.  
 **Fix**: Check `response.text && response.text.length > 0` before setting result. Show "Something went wrong — try again." if empty.  
 **Effort**: Low (15 min)
 
-### [ ] Debounce StrategyGenerator submit button
+### [x] Debounce StrategyGenerator submit button — done 2026-09-13
 **File**: `components/StrategyGenerator.tsx`  
 **What**: Rapid clicking can fire multiple Gemini API calls, hitting rate limits  
 **Fix**: Disable the button during loading (check if already done). Add 500ms debounce if using auto-submit.  
 **Effort**: Low
 
-### [ ] Verify `vercel.json` has SPA rewrites
+### [x] Verify `vercel.json` has SPA rewrites — confirmed present 2026-09-13
 **File**: `glidescale antigravity file/vercel.json`  
 **What**: Direct URL access to non-root paths returns 404 without a rewrite rule  
 **Fix**: Confirm `"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]` is present  

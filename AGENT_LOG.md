@@ -47,3 +47,19 @@ Format per entry:
 - CTA booking link: `https://cal.com/ankitsethy/30`
 - Page section order: Hero → LogoCloud → Authority → Services → Process → Transition → Founder → Metrics → Testimonials → CallToAction → Footer
 - Improvement backlog documented in `directives/website_improvements.md` with 10 specific items
+
+---
+
+## 2026-09-13 — Wire StrategyGenerator into live page — ✅ Success
+
+**Workflow**: Backlog P1 item 1 + P2 item (defensive API-key state)
+**Inputs**: `docs/directives/website_improvements.md`
+**Outputs**:
+- `App.tsx` — import + render `<StrategyGenerator />` between `<Process />` and `<Transition />`
+- `services/geminiService.ts` — moved the `VITE_GEMINI_API_KEY` missing-key check from module top-level (threw on import, would white-screen the whole site once the component got imported anywhere) into `generateStrategy()`; added `isStrategyGeneratorEnabled()`
+- `components/StrategyGenerator.tsx` — submit button now disabled + "Demo temporarily unavailable" note when key is missing, instead of crashing
+**Errors**: None
+**TypeCheck**: pass
+**Learnings**:
+- `geminiService.ts` used to throw at module load if `VITE_GEMINI_API_KEY` was unset — harmless while unimported, but importing `StrategyGenerator` anywhere would have crashed the entire app. Any future component that imports `geminiService` should go through `isStrategyGeneratorEnabled()` first, not assume the key exists.
+- Confirm `VITE_GEMINI_API_KEY` is actually set in Vercel prod env — if not, the demo will render but stay disabled (no crash, but no working feature either).

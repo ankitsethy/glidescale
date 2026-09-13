@@ -127,12 +127,15 @@ export const Services: React.FC = () => {
                   </h3>
                   <p className="text-ink-dim leading-relaxed font-light">{s.description}</p>
 
-                  <div className="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-300/80 group-hover:text-accent-200 transition-colors">
+                  <a
+                    href="#contact"
+                    className="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent-300/80 group-hover:text-accent-200 transition-colors"
+                  >
                     Learn more
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
                       →
                     </span>
-                  </div>
+                  </a>
                 </div>
               </GradientBorderCard>
             </motion.div>
