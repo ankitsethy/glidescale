@@ -1,4 +1,3 @@
-import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 
@@ -9,15 +8,22 @@ const ACCENT = '#7C5CFF';
 const INK = '#F5F5FA';
 const INK_DIM = '#A0A0B4';
 
-// Usage: node scripts/og-image.mjs [logoWidth] [outPath]
-const LOGO_WIDTH = Number(process.argv[2]) || 560;
+// Usage: node scripts/og-image.mjs [layout] [logoWidth] [outPath]
+const LAYOUT = process.argv[2] === 'left' ? 'left' : 'center';
+const LOGO_WIDTH = Number(process.argv[3]) || (LAYOUT === 'left' ? 420 : 560);
 const LOGO_ASPECT = 1064 / 4214;
 const LOGO_HEIGHT = Math.round(LOGO_WIDTH * LOGO_ASPECT);
+
+const MARGIN = 80;
+const isLeft = LAYOUT === 'left';
+
+// Glow follows the composition, so the brightest point sits behind the logo.
+const glowX = isLeft ? '24%' : '50%';
 
 const background = `
 <svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}">
   <defs>
-    <radialGradient id="glow" cx="50%" cy="18%" r="62%">
+    <radialGradient id="glow" cx="${glowX}" cy="18%" r="62%">
       <stop offset="0%" stop-color="${ACCENT}" stop-opacity="0.34" />
       <stop offset="55%" stop-color="${ACCENT}" stop-opacity="0.08" />
       <stop offset="100%" stop-color="${ACCENT}" stop-opacity="0" />
@@ -31,6 +37,12 @@ const background = `
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#glow)" />
   <rect x="0" y="${HEIGHT - 5}" width="${WIDTH}" height="5" fill="${ACCENT}" />
 </svg>`;
+
+const anchor = isLeft ? 'start' : 'middle';
+const textX = isLeft ? MARGIN : WIDTH / 2;
+const lines = isLeft
+  ? { one: 400, two: 468, sub: 540 }
+  : { one: 372, two: 440, sub: 516 };
 
 const text = `
 <svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}">
@@ -50,9 +62,9 @@ const text = `
       letter-spacing: 0.2px;
     }
   </style>
-  <text x="${WIDTH / 2}" y="372" text-anchor="middle" class="headline">AI systems that remove</text>
-  <text x="${WIDTH / 2}" y="440" text-anchor="middle" class="headline">bottlenecks and unlock scale.</text>
-  <text x="${WIDTH / 2}" y="516" text-anchor="middle" class="sub">glidescales.com</text>
+  <text x="${textX}" y="${lines.one}" text-anchor="${anchor}" class="headline">AI systems that remove</text>
+  <text x="${textX}" y="${lines.two}" text-anchor="${anchor}" class="headline">bottlenecks and unlock scale.</text>
+  <text x="${textX}" y="${lines.sub}" text-anchor="${anchor}" class="sub">glidescales.com</text>
 </svg>`;
 
 const logo = await sharp(resolve('public/logo-dark.svg'), { density: 300 })
@@ -60,16 +72,20 @@ const logo = await sharp(resolve('public/logo-dark.svg'), { density: 300 })
   .png()
   .toBuffer();
 
-const out = resolve(process.argv[3] || 'public/og-image.png');
+const out = resolve(process.argv[4] || 'public/og-image.png');
 
 await sharp(Buffer.from(background))
   .composite([
     // Pin the logo's baseline so its gap to the headline stays fixed as it scales.
-    { input: logo, top: 268 - LOGO_HEIGHT, left: Math.round((WIDTH - LOGO_WIDTH) / 2) },
+    {
+      input: logo,
+      top: (isLeft ? 240 : 268) - LOGO_HEIGHT,
+      left: isLeft ? MARGIN : Math.round((WIDTH - LOGO_WIDTH) / 2),
+    },
     { input: Buffer.from(text), top: 0, left: 0 },
   ])
   .png()
   .toFile(out);
 
 const { width, height } = await sharp(out).metadata();
-console.log(`wrote ${out} ${width}x${height} logo=${LOGO_WIDTH}px`);
+console.log(`wrote ${out} ${width}x${height} layout=${LAYOUT} logo=${LOGO_WIDTH}px`);
