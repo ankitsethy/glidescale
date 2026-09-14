@@ -56,3 +56,44 @@ for (const [file, size, filled] of outputs) {
     .toFile(resolve(file));
   console.log(`wrote ${file} ${size}x${size}${filled ? ' (tile)' : ''}`);
 }
+
+// Google's favicon guidelines say it checks /favicon.ico at the site root as
+// a fallback signal even when <link rel="icon"> tags are present. That file
+// never existed here, which is a plausible reason the logo wasn't showing up
+// next to search results despite every other tag being correct.
+// ICO can embed PNG data directly per-entry since Windows Vista, so no extra
+// image-encoding dependency is needed -- just the container format.
+const buildIco = async (sizes) => {
+  const images = await Promise.all(
+    sizes.map((size) =>
+      sharp(Buffer.from(buildSvg(false)), { density: 600 }).resize(size, size).png().toBuffer()
+    )
+  );
+
+  const headerSize = 6 + 16 * images.length;
+  let offset = headerSize;
+  const header = Buffer.alloc(headerSize);
+  header.writeUInt16LE(0, 0); // reserved
+  header.writeUInt16LE(1, 2); // type: icon
+  header.writeUInt16LE(images.length, 4);
+
+  images.forEach((png, i) => {
+    const entry = 6 + i * 16;
+    const size = sizes[i];
+    header.writeUInt8(size >= 256 ? 0 : size, entry); // width, 0 = 256
+    header.writeUInt8(size >= 256 ? 0 : size, entry + 1); // height
+    header.writeUInt8(0, entry + 2); // color palette
+    header.writeUInt8(0, entry + 3); // reserved
+    header.writeUInt16LE(1, entry + 4); // color planes
+    header.writeUInt16LE(32, entry + 6); // bits per pixel
+    header.writeUInt32LE(png.length, entry + 8); // image data size
+    header.writeUInt32LE(offset, entry + 12); // image data offset
+    offset += png.length;
+  });
+
+  return Buffer.concat([header, ...images]);
+};
+
+const ico = await buildIco([16, 32, 48]);
+writeFileSync(resolve('public/favicon.ico'), ico);
+console.log(`wrote public/favicon.ico (${ico.length} bytes, 16/32/48px)`);
