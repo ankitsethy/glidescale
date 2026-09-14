@@ -9,7 +9,8 @@ const ACCENT = '#7C5CFF';
 const INK = '#F5F5FA';
 const INK_DIM = '#A0A0B4';
 
-const LOGO_WIDTH = 460;
+// Usage: node scripts/og-image.mjs [logoWidth] [outPath]
+const LOGO_WIDTH = Number(process.argv[2]) || 560;
 const LOGO_ASPECT = 1064 / 4214;
 const LOGO_HEIGHT = Math.round(LOGO_WIDTH * LOGO_ASPECT);
 
@@ -59,15 +60,16 @@ const logo = await sharp(resolve('public/logo-dark.svg'), { density: 300 })
   .png()
   .toBuffer();
 
-const out = resolve('public/og-image.png');
+const out = resolve(process.argv[3] || 'public/og-image.png');
 
 await sharp(Buffer.from(background))
   .composite([
-    { input: logo, top: 152, left: Math.round((WIDTH - LOGO_WIDTH) / 2) },
+    // Pin the logo's baseline so its gap to the headline stays fixed as it scales.
+    { input: logo, top: 268 - LOGO_HEIGHT, left: Math.round((WIDTH - LOGO_WIDTH) / 2) },
     { input: Buffer.from(text), top: 0, left: 0 },
   ])
   .png()
   .toFile(out);
 
-const { width, height, size } = await sharp(out).metadata();
-console.log(`wrote public/og-image.png ${width}x${height} ${Math.round(size / 1024)}kB`);
+const { width, height } = await sharp(out).metadata();
+console.log(`wrote ${out} ${width}x${height} logo=${LOGO_WIDTH}px`);
