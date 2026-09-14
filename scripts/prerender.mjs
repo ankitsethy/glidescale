@@ -22,6 +22,14 @@ const replaceMetaContent = (html, selector, value) => {
   return html.replace(pattern, `$1${escapeAttr(value)}$2`);
 };
 
+const replaceCanonical = (html, href) => {
+  const pattern = /(<link rel="canonical" href=")[^"]*(")/;
+  if (!pattern.test(html)) {
+    throw new Error('Prerender could not find the canonical link tag');
+  }
+  return html.replace(pattern, `$1${escapeAttr(href)}$2`);
+};
+
 for (const route of routes) {
   const appHtml = render(route.path);
   const canonical = route.path === '/' ? SITE_URL : `${SITE_URL}${route.path}`;
@@ -35,6 +43,7 @@ for (const route of routes) {
   html = replaceMetaContent(html, 'property="og:title"', route.title);
   html = replaceMetaContent(html, 'property="og:description"', route.description);
   html = replaceMetaContent(html, 'property="og:url"', canonical);
+  html = replaceCanonical(html, canonical);
   html = replaceMetaContent(html, 'name="twitter:title"', route.title);
   html = replaceMetaContent(html, 'name="twitter:description"', route.description);
 
