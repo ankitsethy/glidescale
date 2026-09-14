@@ -109,7 +109,7 @@ export const Process: React.FC = () => {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section id="methodology" className="relative py-32 lg:py-40 overflow-hidden">
+    <section id="methodology" className="relative py-20 lg:py-40 overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/8 blur-[140px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">

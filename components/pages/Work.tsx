@@ -16,7 +16,7 @@ const SubHead: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 const CaseStudySection: React.FC<{ study: CaseStudy }> = ({ study }) => (
   <section
     id={study.id}
-    className="relative py-24 lg:py-32 border-t border-white/[0.06] scroll-mt-28"
+    className="relative py-16 lg:py-32 border-t border-white/[0.06] scroll-mt-28"
   >
     <div className="max-w-[1200px] mx-auto px-6">
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
@@ -121,7 +121,7 @@ export const Work: React.FC = () => {
 
   return (
     <main className="relative z-10">
-      <section className="relative pt-40 lg:pt-48 pb-20 lg:pb-24 overflow-hidden">
+      <section className="relative pt-28 lg:pt-48 pb-16 lg:pb-24 overflow-hidden">
         <div className="orb top-[-220px] left-1/2 -translate-x-1/2 w-[900px] h-[520px] bg-accent/12 opacity-50"></div>
 
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
@@ -199,7 +199,7 @@ export const Work: React.FC = () => {
       {alsoBuilt.length > 0 && (
         <section
           id="also-built"
-          className="relative py-24 lg:py-32 border-t border-white/[0.06] scroll-mt-28"
+          className="relative py-16 lg:py-32 border-t border-white/[0.06] scroll-mt-28"
         >
           <div className="max-w-[1200px] mx-auto px-6">
             <motion.div {...reveal} transition={{ duration: 0.7 }}>

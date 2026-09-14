@@ -6,7 +6,7 @@ export const CallToAction: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative py-44 lg:py-56 overflow-hidden flex items-center justify-center"
+      className="relative py-24 lg:py-56 overflow-hidden flex items-center justify-center"
     >
       {/* Big multi-layer glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[800px] bg-accent/15 blur-[160px] rounded-full pointer-events-none"></div>

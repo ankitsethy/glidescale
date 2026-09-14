@@ -3,7 +3,7 @@ import { SectionEyebrow } from '../Primitives';
 
 export const Privacy: React.FC = () => {
   return (
-    <section className="relative py-40 lg:py-48 overflow-hidden">
+    <section className="relative py-28 lg:py-48 overflow-hidden">
       <div className="max-w-[800px] mx-auto px-6 relative z-10">
         <SectionEyebrow>Legal</SectionEyebrow>
         <h1 className="mt-5 font-display font-semibold text-ink leading-[1.1] tracking-tight text-[clamp(32px,5vw,52px)]">

@@ -39,7 +39,7 @@ const links = [
 
 export const Contact: React.FC = () => {
   return (
-    <section className="relative py-40 lg:py-48 overflow-hidden">
+    <section className="relative py-28 lg:py-48 overflow-hidden">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-accent/10 blur-[140px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[600px] mx-auto px-6 relative z-10">

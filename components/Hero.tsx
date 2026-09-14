@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] pt-36 lg:pt-[120px] pb-24 lg:pb-32 overflow-hidden"
+      className="relative min-h-[100vh] pt-28 lg:pt-[120px] pb-24 lg:pb-32 overflow-hidden"
     >
       {/* Background system */}
       <div className="absolute inset-0 pointer-events-none">

@@ -4,7 +4,7 @@ import { SectionEyebrow } from './Primitives';
 
 export const Founder: React.FC = () => {
   return (
-    <section id="founder" className="relative py-32 lg:py-40 overflow-hidden">
+    <section id="founder" className="relative py-20 lg:py-40 overflow-hidden">
       <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-accent/8 blur-[140px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">

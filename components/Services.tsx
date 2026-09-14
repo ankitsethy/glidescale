@@ -73,7 +73,7 @@ const services = [
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="relative py-32 lg:py-40 overflow-hidden">
+    <section id="services" className="relative py-20 lg:py-40 overflow-hidden">
       {/* Background grid + glow */}
       <div className="absolute inset-0 bg-grid-pattern bg-[length:60px_60px] opacity-[0.04] pointer-events-none mask-fade-radial"></div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-accent/10 blur-[120px] rounded-full pointer-events-none"></div>

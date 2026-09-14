@@ -4,7 +4,7 @@ import { SectionEyebrow } from './Primitives';
 
 export const Transition: React.FC = () => {
   return (
-    <section className="relative py-32 lg:py-40 overflow-hidden">
+    <section className="relative py-20 lg:py-40 overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-accent/8 blur-[140px] rounded-full pointer-events-none"></div>
 

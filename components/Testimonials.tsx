@@ -29,7 +29,7 @@ const testimonials = [
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="relative py-32 lg:py-40 overflow-hidden">
+    <section className="relative py-20 lg:py-40 overflow-hidden">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent/8 blur-[140px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
