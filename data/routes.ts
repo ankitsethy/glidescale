@@ -4,7 +4,8 @@ export interface RouteMeta {
   description: string;
 }
 
-export const SITE_URL = 'https://glidescales.com';
+// Canonical host. glidescales.com 307-redirects here, so og:url must match.
+export const SITE_URL = 'https://www.glidescales.com';
 
 export const routes: RouteMeta[] = [
   {
