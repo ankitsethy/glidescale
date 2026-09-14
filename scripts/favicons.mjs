@@ -25,31 +25,34 @@ const markHeight = SRC_H * scale;
 const offsetX = (CANVAS - markWidth) / 2;
 const offsetY = (CANVAS - markHeight) / 2;
 
-const squareSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS} ${CANVAS}" width="${CANVAS}" height="${CANVAS}">
-  <rect width="${CANVAS}" height="${CANVAS}" fill="${TILE_COLOR}"/>
+// Transparent for browser tabs: at 32px a filled tile only pads the mark down.
+// Solid for apple-touch-icon and the PWA icon, because iOS composites a
+// transparent home-screen icon onto black and it reads as broken.
+const buildSvg = (filled) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${CANVAS} ${CANVAS}" width="${CANVAS}" height="${CANVAS}">
+  ${filled ? `<rect width="${CANVAS}" height="${CANVAS}" fill="${TILE_COLOR}"/>` : ''}
   <g transform="translate(${offsetX.toFixed(2)} ${offsetY.toFixed(2)}) scale(${scale.toFixed(5)}) translate(${-SRC_X} ${-SRC_Y})">
     <path fill="${MARK_COLOR}" stroke="${MARK_COLOR}" stroke-linejoin="round" stroke-width="45" d="${MARK_PATH}"/>
   </g>
 </svg>
 `;
 
-writeFileSync(resolve('public/favicon.svg'), squareSvg);
-console.log('wrote public/favicon.svg (square)');
+writeFileSync(resolve('public/favicon.svg'), buildSvg(false));
+console.log('wrote public/favicon.svg (square, transparent)');
 
 // Google recommends favicons be a multiple of 48px.
 const outputs = [
-  ['public/favicon-16x16.png', 16],
-  ['public/favicon-32x32.png', 32],
-  ['public/favicon-48x48.png', 48],
-  ['public/favicon-96x96.png', 96],
-  ['public/apple-touch-icon.png', 180],
-  ['public/icon-512.png', 512],
+  ['public/favicon-16x16.png', 16, false],
+  ['public/favicon-32x32.png', 32, false],
+  ['public/favicon-48x48.png', 48, false],
+  ['public/favicon-96x96.png', 96, false],
+  ['public/apple-touch-icon.png', 180, true],
+  ['public/icon-512.png', 512, true],
 ];
 
-for (const [file, size] of outputs) {
-  await sharp(Buffer.from(squareSvg), { density: 600 })
+for (const [file, size, filled] of outputs) {
+  await sharp(Buffer.from(buildSvg(filled)), { density: 600 })
     .resize(size, size)
     .png()
     .toFile(resolve(file));
-  console.log(`wrote ${file} ${size}x${size}`);
+  console.log(`wrote ${file} ${size}x${size}${filled ? ' (tile)' : ''}`);
 }
