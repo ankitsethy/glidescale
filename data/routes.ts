@@ -2,7 +2,11 @@ export interface RouteMeta {
   path: string;
   title: string;
   description: string;
+  /** Public path to a 1200x630 preview image. Falls back to DEFAULT_OG_IMAGE. */
+  image?: string;
 }
+
+export const DEFAULT_OG_IMAGE = '/og-image.png';
 
 // Canonical host. glidescales.com 307-redirects here, so og:url must match.
 export const SITE_URL = 'https://www.glidescales.com';
