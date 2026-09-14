@@ -16,17 +16,18 @@ const cols = [
   {
     title: 'Services',
     links: [
-      { label: 'Outbound Infrastructure', href: '#work' },
-      { label: 'Revenue Architecture', href: '#work' },
-      { label: 'Execution Frameworks', href: '#work' },
+      { label: 'Outbound Infrastructure', href: '/#services' },
+      { label: 'Revenue Architecture', href: '/#services' },
+      { label: 'Execution Frameworks', href: '/#services' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '#founder' },
-      { label: 'Methodology', href: '#work' },
-      { label: 'Outcomes', href: '#work' },
+      { label: 'About', href: '/#founder' },
+      { label: 'Methodology', href: '/#methodology' },
+      { label: 'Work', href: '/work' },
+      { label: 'Outcomes', href: '/#outcomes' },
     ],
   },
   {

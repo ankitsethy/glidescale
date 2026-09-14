@@ -26,9 +26,10 @@ export const Navbar: React.FC = () => {
     else if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navLinks = [
-    { name: 'Services', id: 'work' },
-    { name: 'Methodology', id: 'work' },
+  const navLinks: { name: string; id?: string; href?: string }[] = [
+    { name: 'Services', id: 'services' },
+    { name: 'Methodology', id: 'methodology' },
+    { name: 'Work', href: '/work' },
     { name: 'About', id: 'founder' },
     { name: 'Contact', id: 'contact' },
   ];
@@ -62,16 +63,29 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop links */}
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-9 text-sm">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => scrollToSection(link.id)}
-              className="relative text-ink-dim hover:text-ink transition-colors duration-300 font-medium tracking-tight group"
-            >
-              {link.name}
+          {navLinks.map((link) => {
+            const className =
+              'relative text-ink-dim hover:text-ink transition-colors duration-300 font-medium tracking-tight group';
+            const underline = (
               <span className="absolute -bottom-1.5 left-0 right-0 mx-auto w-0 h-px bg-accent group-hover:w-full transition-all duration-300 shadow-[0_0_8px_#7C5CFF]"></span>
-            </button>
-          ))}
+            );
+
+            return link.href ? (
+              <a key={link.name} href={link.href} className={className}>
+                {link.name}
+                {underline}
+              </a>
+            ) : (
+              <button
+                key={link.name}
+                onClick={() => scrollToSection(link.id!)}
+                className={className}
+              >
+                {link.name}
+                {underline}
+              </button>
+            );
+          })}
         </div>
 
         {/* CTA */}
@@ -104,15 +118,25 @@ export const Navbar: React.FC = () => {
             className="absolute top-full left-0 right-0 bg-base/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden md:hidden"
           >
             <div className="px-6 py-8 flex flex-col gap-5">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.id)}
-                  className="text-xl font-medium text-ink-dim hover:text-ink text-left transition-colors"
-                >
-                  {link.name}
-                </button>
-              ))}
+              {navLinks.map((link) =>
+                link.href ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-xl font-medium text-ink-dim hover:text-ink text-left transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <button
+                    key={link.name}
+                    onClick={() => scrollToSection(link.id!)}
+                    className="text-xl font-medium text-ink-dim hover:text-ink text-left transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                )
+              )}
               <div className="pt-4">
                 <PrimaryCTA
                   onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}

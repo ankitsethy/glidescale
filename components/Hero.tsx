@@ -78,7 +78,7 @@ export const Hero: React.FC = () => {
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </PrimaryCTA>
-            <SecondaryCTA onClick={() => scrollToSection('work')}>
+            <SecondaryCTA onClick={() => scrollToSection('services')}>
               See How We Work
             </SecondaryCTA>
           </motion.div>
