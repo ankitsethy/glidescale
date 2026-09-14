@@ -15,6 +15,7 @@ import { Footer } from './components/Footer';
 import { Privacy } from './components/pages/Privacy';
 import { Contact } from './components/pages/Contact';
 import { Work } from './components/pages/Work';
+import { findRoute } from './data/routes';
 
 const Home = () => (
   <main className="flex flex-col relative z-10">
@@ -31,18 +32,11 @@ const Home = () => (
   </main>
 );
 
-const PAGE_TITLES: Record<string, string> = {
-  '/work': 'Work | Glidescale AI',
-  '/privacy': 'Privacy | Glidescale AI',
-  '/contact': 'Contact | Glidescale AI',
-};
-
-function App() {
-  const path = window.location.pathname;
+function App({ path: pathProp }: { path?: string }) {
+  const path = pathProp ?? (typeof window === 'undefined' ? '/' : window.location.pathname);
 
   useEffect(() => {
-    document.title =
-      PAGE_TITLES[path] ?? 'Glidescale AI | AI Operating Systems for Growth-Stage Founders';
+    document.title = findRoute(path).title;
   }, [path]);
 
   const page =
