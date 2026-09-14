@@ -8,7 +8,8 @@
     "build": "vite build && vite build --ssr entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "og-image": "node scripts/og-image.mjs"
+    "og-image": "node scripts/og-image.mjs",
+    "favicons": "node scripts/favicons.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.42.0",
