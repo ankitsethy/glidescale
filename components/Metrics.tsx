@@ -39,11 +39,11 @@ const Counter = ({ value }: { value: number }) => {
 
 export const Metrics: React.FC = () => {
   return (
-    <section id="outcomes" className="relative py-20 lg:py-40 overflow-hidden">
+    <section id="outcomes" className="relative py-16 lg:py-24 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent/8 blur-[140px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-        <div className="text-center mb-20 lg:mb-24">
+        <div className="text-center mb-10 lg:mb-14">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export const Metrics: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.12 }}
-              className="relative group bg-base-800 p-10 lg:p-12 flex flex-col justify-between min-h-[340px]"
+              className="relative group bg-base-800 p-8 lg:p-10 flex flex-col justify-between"
             >
               <div>
                 <div className="font-mono font-medium text-ink leading-none tracking-tighter text-[clamp(64px,9vw,108px)] flex items-baseline gap-2">

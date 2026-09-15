@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Analytics } from './components/Analytics';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { LogoCloud } from './components/LogoCloud';
+import { ToolMarquee } from './components/ToolMarquee';
 import { Authority } from './components/Authority';
+import { HomeProof } from './components/HomeProof';
 import { Services } from './components/Services';
 import { Process } from './components/Process';
-import { Transition } from './components/Transition';
 import { Founder } from './components/Founder';
 import { Metrics } from './components/Metrics';
 import { Testimonials } from './components/Testimonials';
@@ -15,20 +15,21 @@ import { Footer } from './components/Footer';
 import { Privacy } from './components/pages/Privacy';
 import { Contact } from './components/pages/Contact';
 import { Work } from './components/pages/Work';
+import { ServicesPage } from './components/pages/Services';
+import { ProcessPage } from './components/pages/Process';
 import { findRoute } from './data/routes';
 
 const Home = () => (
   <main className="flex flex-col relative z-10">
     <Hero />
-    <LogoCloud />
+    <ToolMarquee />
     <Authority />
+    <HomeProof />
     <Services />
     <Process />
-    <Transition />
     <Founder />
     <Metrics />
     <Testimonials />
-    <CallToAction />
   </main>
 );
 
@@ -41,9 +42,15 @@ function App({ path: pathProp }: { path?: string }) {
 
   const page =
     path === '/work' ? <Work /> :
+    path === '/services' ? <ServicesPage /> :
+    path === '/process' ? <ProcessPage /> :
     path === '/privacy' ? <Privacy /> :
     path === '/contact' ? <Contact /> :
     <Home />;
+
+  // The Contact page IS the closing CTA in a different shape -- showing both
+  // repeats the ask twice on one page.
+  const showCallToAction = path !== '/contact';
 
   return (
     <div className="min-h-screen bg-base text-ink font-sans selection:bg-accent/30 antialiased">
@@ -51,6 +58,7 @@ function App({ path: pathProp }: { path?: string }) {
       <div className="bg-noise"></div>
       <Navbar />
       {page}
+      {showCallToAction && <CallToAction />}
       <Footer />
     </div>
   );

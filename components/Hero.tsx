@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] pt-28 lg:pt-[120px] pb-24 lg:pb-32 overflow-hidden"
+      className="relative pt-28 lg:pt-36 pb-16 lg:pb-24 overflow-hidden"
     >
       {/* Background system */}
       <div className="absolute inset-0 pointer-events-none">
@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="inline-flex"
           >
-            <SectionEyebrow center>AI Infrastructure & Growth Systems</SectionEyebrow>
+            <SectionEyebrow center>AI Implementation & Growth Systems</SectionEyebrow>
           </motion.div>
 
           <motion.h1
@@ -56,20 +56,10 @@ export const Hero: React.FC = () => {
             <span className="text-gradient-shimmer">unlock scale.</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.18 }}
-            className="mt-8 text-lg md:text-xl text-ink-dim max-w-xl mx-auto leading-relaxed font-light"
-          >
-            We redesign how growth operates inside your company,
-            replacing manual drag with AI-backed operating infrastructure.
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.28 }}
+            transition={{ duration: 0.8, delay: 0.18 }}
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <PrimaryCTA pulse onClick={() => scrollToSection('contact')}>
@@ -83,31 +73,6 @@ export const Hero: React.FC = () => {
             </SecondaryCTA>
           </motion.div>
         </div>
-
-        {/* Marquee strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="mt-20 lg:mt-24 mask-fade-edges overflow-hidden"
-        >
-          <div className="marquee gap-12 text-sm text-ink-mute font-medium tracking-wide">
-            {Array.from({ length: 2 }).map((_, copy) => (
-              <div key={copy} className="flex items-center gap-12 pr-12 whitespace-nowrap">
-                <span>Working with growth-stage founders across SaaS, services & agencies</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span>Outbound infrastructure</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent/60"></span>
-                <span>Revenue architecture</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                <span>Execution frameworks</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent/60"></span>
-                <span>Deployed in 8 weeks</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

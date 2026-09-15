@@ -14,15 +14,27 @@ export const SITE_URL = 'https://www.glidescales.com';
 export const routes: RouteMeta[] = [
   {
     path: '/',
-    title: 'Glidescale AI | AI Operating Systems for Growth-Stage Founders',
+    title: 'Glidescale AI | We find what\'s slowing your business down, then fix it',
     description:
-      'Glidescale AI builds AI-backed operating infrastructure for growth-stage companies. We replace manual drag with scalable outbound, revenue, and execution systems.',
+      'Glidescale builds the systems that remove bottlenecks: cold email outbound, AI voice agents, workflow automation, CRM systems, and websites built to convert.',
   },
   {
     path: '/work',
     title: 'Work | Glidescale AI',
     description:
       'Systems we have built, who they were for, and what changed. Lead capture, outbound, voice agents, and the dashboards that make growth visible.',
+  },
+  {
+    path: '/services',
+    title: 'Services | Glidescale AI',
+    description:
+      'Five systems we build: cold email outbound, AI voice agents, workflow automation, CRM systems, and websites built to convert.',
+  },
+  {
+    path: '/process',
+    title: 'Our Process | Glidescale AI',
+    description:
+      'From first call to live system. How we find what is slowing a business down, then build what fixes it.',
   },
   {
     path: '/privacy',

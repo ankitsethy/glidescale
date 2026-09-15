@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Authority: React.FC = () => {
   return (
-    <section className="relative py-20 lg:py-40 overflow-hidden">
+    <section className="relative py-16 lg:py-24 overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-accent/10 blur-[140px] rounded-full pointer-events-none"></div>
 
@@ -24,9 +24,8 @@ export const Authority: React.FC = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="font-display font-semibold text-ink leading-[1.05] tracking-tighter text-[clamp(36px,6vw,80px)]"
         >
-          Growth does not <br />
-          break businesses. <br />
-          <span className="text-gradient-accent">Poor systems do.</span>
+          You can't fix <br />
+          what you <span className="text-gradient-accent">can't see.</span>
         </motion.h2>
 
         <motion.div

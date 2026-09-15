@@ -1,96 +1,129 @@
 # Progress snapshot
 
-This is the current state, not a log — it gets overwritten in place as things move.
-Read this first in any new chat before starting work. `AGENT_LOG.md` has the append-only
-history if you need "what happened, in order" instead of "what's true right now."
+Current state, not a log — overwrite in place as things move. Read this first in any new chat.
+`AGENT_LOG.md` has the append-only history if you need "what happened, in order."
+
+## ⚠️ The repo is mid-rebuild and does NOT build right now
+
+`App.tsx` still imports `LogoCloud` and `Transition`, both of which have been deleted.
+Nothing is committed or pushed, so the live site is unaffected. Finish the wiring below
+before running a build.
 
 ## Standing rules (settled, don't re-derive)
 
-- **Ignore `docs/directives/` and `docs/knowledge/` entirely.** They're stale earlier-iteration
-  files, not instructions. Ankit's direct word is the only source of truth. See
-  `docs/directives/website_improvements.md` for the cautionary example — StrategyGenerator got
-  built because a backlog file said to, and Ankit never asked for it.
-- **Always ask before assuming** any real-world detail: emails, handles, copy, numbers. Don't
-  guess a plausible default.
-- **Commit and push to `main` after finishing a change, without waiting to be asked.** Ankit
-  reviews by looking at the live deployed site, not the repo.
-- **Ankit has no web design background.** Make visual/spacing calls yourself and explain the
-  reasoning. When it's a real judgment call, render it and show him the image rather than
-  describing it — he decides fast once he can see options side by side.
-- **Mobile is a first-class target, not a follow-up.** Check every change at 375px. There is no
-  browser tooling in this session — reason from the code, and say plainly when something hasn't
-  been visually confirmed.
-- **Flag it proactively when work is mechanical enough for Sonnet.** Don't wait to be asked.
-  Judgment/design/synthesis work stays on Opus.
-- **Domain move pending.** Ankit is buying `glidescale.ai` in a few weeks. Everything is built
-  domain-agnostic — `data/routes.ts` has one `SITE_URL` constant that updates canonicals, OG
-  tags, sitemap, and robots.txt together. Don't hardcode the domain anywhere else.
-- **"Glidescale" is a contested brand term.** An established affiliate-marketing company owns
-  `glidescale.com` with press coverage; a GLP-1 tracking app also uses the name. Already ranking
-  #2 on Google for the bare term as of 2026-09-14. Don't expect #1 quickly — that's an
-  entity-authority problem, not a tags problem.
+- **Ignore `docs/directives/` and `docs/knowledge/` entirely.** Stale earlier-iteration files.
+  Ankit's direct word is the only source of truth.
+- **Always ask before assuming** any real-world detail: emails, handles, copy, numbers, tool lists.
+- **Commit and push to `main` when a chunk is done**, without being asked. Ankit reviews live.
+- **Ankit has no web design background.** Make visual calls yourself and explain them. When it's a
+  real judgment call, *render it and show him the image* — he decides instantly once he can see it.
+- **Mobile is first-class.** Check at 375px. No browser tooling in session — say plainly when
+  something is reasoned from CSS rather than observed.
+- **Flag proactively when work is mechanical enough for Sonnet.** Don't wait to be asked.
+- **HARD RULE: nothing on a page may repeat anything else on that page.** Ankit is emphatic.
+  Check every new heading against every existing one.
+- **HARD RULE: nothing wordy.** Simple, straightforward, direct. Short declarative sentences.
+- **No pricing anywhere, in any form.** Asked and refused explicitly.
+- **No invented numbers, clients, logos, quotes or stats.** Ever.
+- `data/routes.ts` has one `SITE_URL` constant. Domain moves to `glidescale.ai` in a few weeks —
+  never hardcode the domain anywhere else.
 
-## Built and live (main, deployed via Vercel)
+## Live and shipped
 
-- **`/work`** — case-studies/portfolio page. Content in `data/clients.ts`; add a client by adding
-  one object, no layout changes. Two featured case studies (Ghar Apna, Upscalers.io) + 3
-  anonymized "also built" entries. Each entry has an optional `metrics` slot, currently empty.
-- **`/privacy`, `/contact`** — real pages, real content (not placeholder).
-- **Prerendering** — every route (`/`, `/work`, `/privacy`, `/contact`) builds to its own static
-  HTML file with its own title/description/OG tags via `scripts/prerender.mjs` +
-  `entry-server.tsx`. Fixes: link previews, crawlers, and Claude/WebFetch all seeing real content
-  instead of an empty `<div>`.
-- **`sitemap.xml` + `robots.txt`** — generated from `data/routes.ts`, can't drift out of sync.
-- **Canonical URLs + Organization JSON-LD** — per-route `rel=canonical`, `sameAs` links to
-  Ankit's LinkedIn/X for brand-entity disambiguation.
-- **OG preview image** (`public/og-image.png`) — generated via `npm run og-image` from the real
-  logo, not hand-made. Centered layout, logo at 560px width (compared against 460/660, and
-  against a left-aligned layout — centered won on legibility at chat-preview size).
-  `og:image:width/height` + alt text set.
-- **Favicon set** — was broken (wide 3.6:1 mark squashed into square slots, rendered as a
-  sliver). Rebuilt via `npm run favicons` as a proper square composition. Transparent on browser
-  tabs, solid tile only on `apple-touch-icon.png`/`icon-512.png` (iOS composites transparent
-  home-screen icons onto black).
-- **Brand assets renamed** — canonical files now live directly in `brand/` with clear names and
-  a table in `brand/README.md`. `brand/_raw/` is archive only, nothing should reference it.
-- **StrategyGenerator removed** from the homepage (component/service files kept, not deleted —
-  just unrendered). Fake AI demo undercut a page arguing the company ships real infrastructure.
-- **Nav/anchor fixes** — `Methodology` and `Outcomes` footer links used to silently land on the
-  wrong section (`Process.tsx`/`Metrics.tsx` had no `id` at all). Services anchor renamed
-  `#work` → `#services` since `/work` is now a real route. Navbar supports both scroll-buttons
-  and real links; works correctly when navigating from `/work`/`/privacy`/`/contact` back to a
-  homepage anchor.
-- **LinkedIn/X/email corrected** — were wrong handles/placeholder email, now real, and now
-  visible in both Footer and Founder section (previously only Footer had all three).
+- Prerendering: every route builds to its own static HTML with its own title/description/OG tags
+  (`scripts/prerender.mjs` + `entry-server.tsx`). Crawlers, link previews and WebFetch all see real
+  content. **Any new route MUST be added to `data/routes.ts` or it won't prerender or appear in the
+  sitemap.**
+- `sitemap.xml` + `robots.txt`, generated from `data/routes.ts`.
+- Per-route canonicals + Organization JSON-LD with `sameAs`.
+- OG image (`npm run og-image`), favicons (`npm run favicons`), `favicon.ico` at root.
+- `/work` case studies page, `/privacy`, `/contact`.
+- Brand assets renamed canonically in `brand/`; `brand/_raw/` is archive only.
 
-## In progress
+## Built this session, NOT yet wired or committed
 
-- **Mobile responsiveness pass.** Ankit: "looks like trash for mobile ... make it a rule, so
-  its for both" (reference: leftclick.ai, works well on mobile). Currently auditing
-  `components/*.tsx` for fixed-pixel widths, overflow-prone absolute-positioned decorative
-  elements (orbs/glows), and layout that doesn't collapse at small widths. Not yet fixed — audit
-  in progress as of 2026-09-14.
+- `data/services.ts` — 5 services, each with `short` (homepage) + `long` (/services) + `moves[]`.
+- `data/process.ts` — 6 steps (Discovery → Mapping → ROI Analysis → Build → Deploy → Ongoing).
+- `data/tools.ts` — 11 tools.
+- `public/tools/*.svg` — 11 vendored logos, via `npm run tool-logos` (`scripts/tool-logos.mjs`).
+- `components/ToolMarquee.tsx` — one row, white-silhouette filter, pause on hover.
+- `components/Services.tsx` — rewritten, 5 cards + "All services →" link.
+- `components/Process.tsx` — rewritten, 6 steps + "The full process →" link.
+- `components/Authority.tsx` — copy is now just "You can't fix what you can't see."
+- `components/CallToAction.tsx` — new copy ("Start with a call."), 24h promise removed.
+- `components/Hero.tsx` — subhead removed, `min-h-[100vh]` removed.
+- Deleted: `components/LogoCloud.tsx`, `components/Transition.tsx`.
 
-## Blocked / waiting on Ankit
+## Remaining work in this wave
 
-- **Case study numbers.** Real percentages and revenue figures for the `metrics` slots in
-  `data/clients.ts`. Explicitly deferred by Ankit ("doing the numbers later"). This is the last
-  thing keeping `/work` from being fully loaded.
-- **Google Search Console.** Ankit has set this up (his side, not mine — no connector available
-  in this session). Needs: submit sitemap, use URL Inspection → Request Indexing per page to
-  speed up re-crawl (relevant now that favicon/OG tags changed).
-- **`og:image:width/height` decision** was offered once mid-conversation and Ankit moved on
-  before answering directly — got added anyway as a clear net-positive, not actually blocked.
+1. **`Hero.tsx`** — delete the bottom marquee strip (lines ~77-100). It lists the OLD service names
+   and an unsourced "Deployed in 8 weeks", and sits directly above the new tool marquee.
+2. **`App.tsx`** — import `ToolMarquee` in LogoCloud's slot, drop `Transition`, and **move
+   `CallToAction` out of `Home` into the shell** so it renders above `Footer` on every route.
+   **Suppress it on `/contact`** (that page IS the CTA; showing both repeats).
+3. **New `/services` page** — all five from `data/services.ts` using the `long` copy.
+4. **New `/process` page** — six steps using `long` copy. Opening line, which belongs ONLY here and
+   must not appear on the homepage: *"We find what's slowing your business down, then build the
+   system that fixes it."* (On the homepage it would echo the hero's "remove bottlenecks".)
+5. **`data/routes.ts`** — add `/services` and `/process` with titles + descriptions.
+6. **`Footer.tsx`** — 4 columns, real destinations only, no invented pages. Services column must use
+   the NEW five service names (currently shows the old three).
+7. **`/contact` page buildout** — leftclick-style rows. Confirmed: **no phone, no hours.**
+   Serving line: **US, UK, Canada, Australia, India.** Email, LinkedIn, X, book-a-call.
+8. **Homepage proof section** (Ankit approved) — Ghar Apna + Upscalers.io named, from
+   `data/clients.ts`, linking to `/work`. Evidence currently only exists on `/work`.
+9. **Density pass** — standard sections `py-20 lg:py-40` → `py-16 lg:py-24`; `CallToAction`
+   `lg:py-56` → `lg:py-32`; section headers `mb-20` → `mb-10 lg:mb-14`; `Metrics` cards drop
+   `min-h-[340px]`, `p-10 lg:p-12` → `p-8 lg:p-10`.
+10. **Styling: SKIPPED this round, explicitly.** Ankit initially approved toning down
+    gradient-shimmer/animated counters/orbs, then asked "are you sure we need to change the
+    styling" — correctly pointed out no browser exists in this session to preview it. Descoped to
+    nothing rather than ship unverifiable visual changes. Revisit as its own pass later, ideally
+    with a way to actually render/screenshot a comparison first.
+11. Verify, then **commit and push** so Ankit can see it live.
 
-## Known gaps, not yet actioned
+## Next wave
 
-- **Fake social proof still on the homepage.** Three fabricated testimonials
-  (`components/Testimonials.tsx`) and six invented company logos (`components/LogoCloud.tsx`).
-  Flagged to Ankit as the top remaining credibility risk now that `/work` has real proof on it.
-  No decision yet on fix (remove vs. replace vs. reframe LogoCloud as "tools we build with").
-- **Homepage copy is thin**, per Ankit's own assessment, and he's drawing inspiration from
-  leftclick.ai (Nick Saraev) — that voice is proof-heavy and specific ("$10M+ in revenue
-  generated," named client outcomes with real numbers, stated pricing). Blocked on the same
-  numbers as above; can't write specific proof-copy without real figures.
-- **`brand/_raw/` cleanup** — Ankit said delete the dead stuff; renamed/promoted the canonical
-  files but haven't deleted `_raw/` yet. Low priority, do when convenient.
+- **`/work` restructure to an index + detail pages**, matching leftclick: a card grid where each
+  card is client name + a one-line outcome, each linking to `/work/<id>`. Requires prefix routing
+  (current routing is exact-match only) and a `headline` field on `CaseStudy`. **The one-line
+  outcome is the whole point of the pattern and it needs Ankit's real numbers.**
+- Case studies should be **outcomes-first**, then challenge, then solution — leftclick's order,
+  and the reverse of the current `/work`.
+
+## Blocked on Ankit
+
+- **Real numbers** — percentages and revenue figures for the `metrics` slots in `data/clients.ts`.
+  Blocks the `/work` restructure and the homepage stat tiles.
+- **Client logos + one real testimonial** — `CaseStudy.logo` is `null` everywhere. Needs permission
+  from Ghar Apna and Upscalers.io.
+- **Google Search Console** — set up and indexing requested by Ankit. Nothing left on our side.
+
+## Decisions Ankit has explicitly made (do not re-litigate)
+
+- Hero headline stays: "AI systems that remove bottlenecks and unlock scale." Subhead deleted.
+- Testimonials **stay for now** — he considers them placeholders he'll replace, not fakes. Raised
+  twice with evidence; he's aware. Drop it.
+- Stat tiles (8 wks / 30 hrs/wk / 3×) stay for batch 2.
+- No `/about` page. No FAQ page. One `/services` page, not five.
+- Tool marquee stays, one row, 11 tools.
+- Process: Discovery is the call, no Proposal step, Ongoing step added.
+
+## Research findings (leftclick.ai teardown, 2026-09-15)
+
+Three agents fetched their homepage, all 15 sub-pages, and did a gap analysis. Key points:
+
+- **They have ~18 pages but only ~6 are load-bearing**: pricing, case studies + details, about,
+  process, contact. The rest are thin SEO/answer-engine pages that all carry the same CTA.
+- **Their palette is two colours and one typeface.** No gradients, glows, glassmorphism, animated
+  counters or shimmer. Hand-built static HTML, 25KB of CSS. *Credibility comes from restraint and
+  falsifiability, not production value.* This is the main reason our site reads as templated.
+- **Zero testimonials or star ratings anywhere**, including on a section literally named
+  `reviews-section`. They use named clients + numbers + real photos instead.
+- **No tech-stack logo wall.** Their marquee is client logos, hedged as "Nick & his team have
+  worked with" — weak enough to be true, which is why it reads credible.
+- **7 CTAs, all to one calendar URL.** No forms, no lead magnets, no popups, no scarcity.
+- **Hero is `min-height: 80svh`** — deliberately does not fill the viewport.
+- Headings are short declarative sentences ending in a period.
+- **Our `/work` page is genuinely better than their case studies** — we name the actual systems and
+  platforms; they give a logo and a number. It's just buried on the wrong page.

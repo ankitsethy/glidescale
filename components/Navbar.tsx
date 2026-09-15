@@ -16,14 +16,22 @@ export const Navbar: React.FC = () => {
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
 
-    if (window.location.pathname !== '/') {
-      window.location.href = id === 'home' ? '/' : `/#${id}`;
+    // Some sections (e.g. the closing CTA) render on every page, not just the
+    // homepage, so check the current page for the target before assuming a
+    // cross-page navigation is needed.
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
       return;
     }
 
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-    else if (id === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'home') {
+      if (window.location.pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+      else window.location.href = '/';
+      return;
+    }
+
+    window.location.href = `/#${id}`;
   };
 
   const navLinks: { name: string; id?: string; href?: string }[] = [

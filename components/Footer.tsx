@@ -1,4 +1,5 @@
 import React from 'react';
+import { services } from '../data/services';
 
 const LinkedInIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -16,16 +17,15 @@ const cols = [
   {
     title: 'Services',
     links: [
-      { label: 'Outbound Infrastructure', href: '/#services' },
-      { label: 'Revenue Architecture', href: '/#services' },
-      { label: 'Execution Frameworks', href: '/#services' },
+      ...services.map((s) => ({ label: s.title, href: `/services#${s.id}` })),
+      { label: 'All Services', href: '/services' },
     ],
   },
   {
     title: 'Company',
     links: [
       { label: 'About', href: '/#founder' },
-      { label: 'Methodology', href: '/#methodology' },
+      { label: 'Our Process', href: '/process' },
       { label: 'Work', href: '/work' },
       { label: 'Outcomes', href: '/#outcomes' },
     ],
@@ -58,8 +58,7 @@ export const Footer: React.FC = () => {
               <img src="/logo-dark.svg" alt="Glidescale" className="h-12 w-auto object-contain" />
             </a>
             <p className="mt-6 max-w-sm text-ink-dim leading-relaxed font-light">
-              AI-backed operating infrastructure for growth-stage companies.
-              Built to remove bottlenecks and unlock scale.
+              AI systems for outbound, automation, and revenue operations.
             </p>
             <div className="mt-8 flex items-center gap-3">
               <a

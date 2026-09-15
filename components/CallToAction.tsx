@@ -6,7 +6,7 @@ export const CallToAction: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative py-24 lg:py-56 overflow-hidden flex items-center justify-center"
+      className="relative py-20 lg:py-32 overflow-hidden flex items-center justify-center"
     >
       {/* Big multi-layer glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1300px] h-[800px] bg-accent/15 blur-[160px] rounded-full pointer-events-none"></div>
@@ -27,9 +27,9 @@ export const CallToAction: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="inline-flex mb-10"
+          className="inline-flex mb-8"
         >
-          <SectionEyebrow center>Limited Capacity</SectionEyebrow>
+          <SectionEyebrow center>Work with us</SectionEyebrow>
         </motion.div>
 
         <motion.h2
@@ -37,10 +37,10 @@ export const CallToAction: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display font-semibold text-ink leading-[1.03] tracking-tighter text-[clamp(48px,8vw,108px)]"
+          className="font-display font-semibold text-ink leading-[1.03] tracking-tighter text-[clamp(42px,7vw,88px)]"
         >
-          Scale without <br />
-          <span className="text-gradient-shimmer">operational drag.</span>
+          Start with <br />
+          <span className="text-gradient-shimmer">a call.</span>
         </motion.h2>
 
         <motion.p
@@ -48,10 +48,10 @@ export const CallToAction: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.18 }}
-          className="mt-10 text-lg md:text-xl text-ink-dim font-light max-w-xl mx-auto leading-relaxed"
+          className="mt-8 text-lg md:text-xl text-ink-dim font-light max-w-xl mx-auto leading-relaxed"
         >
-          A 30-minute strategy session. No commitment. We map the bottlenecks
-          and show you what removing them looks like.
+          Thirty minutes, free. You leave knowing what we would build first
+          and why.
         </motion.p>
 
         <motion.div
@@ -59,14 +59,14 @@ export const CallToAction: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.28 }}
-          className="mt-14"
+          className="mt-10"
         >
           <PrimaryCTA
             pulse
             onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
             className="!min-h-[64px] !px-12 !text-base"
           >
-            Book your strategy call
+            Book a free 30-minute call
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

@@ -19,7 +19,18 @@ const EmailIcon = () => (
   </svg>
 );
 
+const CalendarIcon = () => (
+  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+    <path d="M7 2v3M17 2v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const links = [
+  {
+    label: 'Book a free 30-minute call',
+    href: 'https://cal.com/ankitsethy/30',
+    icon: <CalendarIcon />,
+  },
   {
     label: 'ankitsethy.ai@gmail.com',
     href: 'mailto:ankitsethy.ai@gmail.com',
@@ -37,6 +48,8 @@ const links = [
   },
 ];
 
+const servingRegions = ['United States', 'United Kingdom', 'Canada', 'Australia', 'India'];
+
 export const Contact: React.FC = () => {
   return (
     <section className="relative py-28 lg:py-48 overflow-hidden">
@@ -48,7 +61,7 @@ export const Contact: React.FC = () => {
           Let's talk.
         </h1>
         <p className="mt-4 text-ink-dim leading-relaxed font-light text-center max-w-md mx-auto">
-          Reach out directly through any of these — LinkedIn is fastest.
+          Book a call, or reach the team directly. LinkedIn is fastest.
         </p>
 
         <div className="mt-12 flex flex-col gap-4">
@@ -66,6 +79,13 @@ export const Contact: React.FC = () => {
               <span className="font-medium">{link.label}</span>
             </a>
           ))}
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-white/[0.06] text-center">
+          <span className="text-[11px] font-semibold uppercase tracking-eyebrow text-ink-mute">
+            Serving
+          </span>
+          <p className="mt-2 text-sm text-ink-dim">{servingRegions.join(' · ')}</p>
         </div>
       </div>
     </section>
