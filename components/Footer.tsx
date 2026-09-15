@@ -25,17 +25,24 @@ const cols = [
     title: 'Company',
     links: [
       { label: 'About', href: '/#founder' },
-      { label: 'Our Process', href: '/process' },
       { label: 'Work', href: '/work' },
       { label: 'Outcomes', href: '/#outcomes' },
     ],
   },
   {
-    title: 'Contact',
+    title: 'Resources',
+    links: [
+      { label: 'Our Process', href: '/process' },
+      { label: 'Privacy', href: '/privacy' },
+    ],
+  },
+  {
+    title: 'Connect',
     links: [
       { label: 'Book a Call', href: 'https://cal.com/ankitsethy/30', external: true },
+      { label: 'Contact', href: '/contact' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ankit-sethy-/', external: true },
-      { label: 'ankitsethy.ai@gmail.com', href: 'mailto:ankitsethy.ai@gmail.com', external: true },
+      { label: 'Email', href: 'mailto:ankitsethy.ai@gmail.com', external: true },
     ],
   },
 ];
@@ -50,7 +57,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-8 mb-16">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-5">
+          <div className="col-span-2 md:col-span-4">
             <a
               href="/"
               className="inline-flex items-center transition-opacity hover:opacity-80"
@@ -103,16 +110,10 @@ export const Footer: React.FC = () => {
               </ul>
             </div>
           ))}
-
-          <div className="md:col-span-1 hidden md:block"></div>
         </div>
 
-        <div className="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ink-mute">
+        <div className="pt-8 border-t border-white/[0.06] text-center text-xs text-ink-mute">
           <span>© {new Date().getFullYear()} Glidescale AI. All rights reserved.</span>
-          <div className="flex items-center gap-5">
-            <a href="/privacy" className="hover:text-ink-dim transition-colors">Privacy</a>
-            <a href="/contact" className="hover:text-ink-dim transition-colors">Contact</a>
-          </div>
         </div>
       </div>
     </footer>

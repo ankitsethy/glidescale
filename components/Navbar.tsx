@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks: { name: string; id?: string; href?: string }[] = [
     { name: 'Services', id: 'services' },
-    { name: 'Methodology', id: 'methodology' },
+    { name: 'Process', id: 'methodology' },
     { name: 'Work', href: '/work' },
     { name: 'About', id: 'founder' },
     { name: 'Contact', id: 'contact' },
