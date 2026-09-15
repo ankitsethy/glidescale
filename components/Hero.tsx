@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="inline-flex"
           >
-            <SectionEyebrow center>AI Implementation & Growth Systems</SectionEyebrow>
+            <SectionEyebrow center>Built to Scale</SectionEyebrow>
           </motion.div>
 
           <motion.h1
