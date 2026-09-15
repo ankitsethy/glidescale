@@ -35,10 +35,10 @@ export const capabilities = [
 export const caseStudies: CaseStudy[] = [
   {
     id: 'ghar-apna',
-    name: 'Ghar Apna',
+    name: 'Gharapna',
     tagline: 'PG rental chain, Mumbai and Navi Mumbai. 7-figure business.',
     headline: 'Response time: inconsistent to immediate. Six systems, two weeks.',
-    logo: null,
+    logo: '/logos/gharapna.svg',
     timeline: 'Six systems, shipped in two weeks',
     active: true,
     problem:
@@ -81,7 +81,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       'Growth infrastructure for tech companies. 60+ companies served, 20k+ creator network.',
     headline: 'Manual influencer sourcing replaced with a system that scales with volume.',
-    logo: null,
+    logo: '/logos/upscalers-mark.svg',
     problem:
       'Influencer sourcing, vetting, and matching was manual and did not scale. There was no system for scoring or enriching influencer data, and no structured way to match the right creator to the right campaign as volume grew.',
     systemsBuilt: [

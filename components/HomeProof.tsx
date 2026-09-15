@@ -50,6 +50,9 @@ export const HomeProof: React.FC = () => {
               className="block"
             >
               <GradientBorderCard className="h-full p-8 lg:p-9 group">
+                {study.logo && (
+                  <img src={study.logo} alt={study.name} className="h-8 w-auto object-contain mb-5" />
+                )}
                 <h3 className="font-display font-semibold text-xl lg:text-2xl text-ink tracking-tightx">
                   {study.name}
                 </h3>
