@@ -12,6 +12,8 @@ export interface CaseStudy {
   id: string;
   name: string;
   tagline: string;
+  /** One-line outcome shown on the index card. Only needed when featured. */
+  headline?: string;
   logo: string | null;
   problem?: string;
   systemsBuilt?: SystemBuilt[];
@@ -35,6 +37,7 @@ export const caseStudies: CaseStudy[] = [
     id: 'ghar-apna',
     name: 'Ghar Apna',
     tagline: 'PG rental chain, Mumbai and Navi Mumbai. 7-figure business.',
+    headline: 'Response time: inconsistent to immediate. Six systems, two weeks.',
     logo: null,
     timeline: 'Six systems, shipped in two weeks',
     active: true,
@@ -77,6 +80,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'Upscalers.io',
     tagline:
       'Growth infrastructure for tech companies. 60+ companies served, 20k+ creator network.',
+    headline: 'Manual influencer sourcing replaced with a system that scales with volume.',
     logo: null,
     problem:
       'Influencer sourcing, vetting, and matching was manual and did not scale. There was no system for scoring or enriching influencer data, and no structured way to match the right creator to the right campaign as volume grew.',

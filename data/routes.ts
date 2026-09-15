@@ -1,3 +1,5 @@
+import { caseStudies } from './clients';
+
 export interface RouteMeta {
   path: string;
   title: string;
@@ -47,6 +49,15 @@ export const routes: RouteMeta[] = [
     title: 'Contact | Glidescale AI',
     description: 'Reach Glidescale AI directly by email, LinkedIn, or X.',
   },
+  // One route per featured case study, generated so it can never drift out
+  // of sync with what's actually in data/clients.ts.
+  ...caseStudies
+    .filter((study) => study.featured)
+    .map((study) => ({
+      path: `/work/${study.id}`,
+      title: `${study.name} | Work | Glidescale AI`,
+      description: study.headline ?? study.results,
+    })),
 ];
 
 export const findRoute = (path: string): RouteMeta =>

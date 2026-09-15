@@ -15,9 +15,11 @@ import { Footer } from './components/Footer';
 import { Privacy } from './components/pages/Privacy';
 import { Contact } from './components/pages/Contact';
 import { Work } from './components/pages/Work';
+import { WorkDetail } from './components/pages/WorkDetail';
 import { ServicesPage } from './components/pages/Services';
 import { ProcessPage } from './components/pages/Process';
 import { findRoute } from './data/routes';
+import { caseStudies } from './data/clients';
 
 const Home = () => (
   <main className="flex flex-col relative z-10">
@@ -40,7 +42,12 @@ function App({ path: pathProp }: { path?: string }) {
     document.title = findRoute(path).title;
   }, [path]);
 
+  const workStudy = path.startsWith('/work/')
+    ? caseStudies.find((study) => study.id === path.slice('/work/'.length))
+    : undefined;
+
   const page =
+    workStudy ? <WorkDetail study={workStudy} /> :
     path === '/work' ? <Work /> :
     path === '/services' ? <ServicesPage /> :
     path === '/process' ? <ProcessPage /> :

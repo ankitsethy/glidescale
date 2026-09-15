@@ -42,7 +42,7 @@ export const HomeProof: React.FC = () => {
           {featured.map((study, i) => (
             <motion.a
               key={study.id}
-              href={`/work#${study.id}`}
+              href={`/work/${study.id}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
