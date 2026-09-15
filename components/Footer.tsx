@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ink-mute">
-          <span>© {new Date().getFullYear()} GlideScale AI Inc. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Glidescale AI. All rights reserved.</span>
           <div className="flex items-center gap-5">
             <a href="/privacy" className="hover:text-ink-dim transition-colors">Privacy</a>
             <a href="/contact" className="hover:text-ink-dim transition-colors">Contact</a>
