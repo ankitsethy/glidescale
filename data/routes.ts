@@ -16,9 +16,9 @@ export const SITE_URL = 'https://www.glidescales.com';
 export const routes: RouteMeta[] = [
   {
     path: '/',
-    title: 'Glidescale AI | We find what\'s slowing your business down, then fix it',
+    title: 'Glidescale AI | Find what\'s slowing growth. Fix it.',
     description:
-      'Glidescale builds the systems that remove bottlenecks: cold email outbound, AI voice agents, workflow automation, CRM systems, and websites built to convert.',
+      'Glidescale builds the systems that remove bottlenecks: outbound, voice agents, automation, and CRM built to convert leads.',
   },
   {
     path: '/work',
