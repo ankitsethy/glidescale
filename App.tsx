@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { ToolMarquee } from './components/ToolMarquee';
 import { Authority } from './components/Authority';
 import { HomeProof } from './components/HomeProof';
+import { Guarantee } from './components/Guarantee';
 import { Services } from './components/Services';
 import { Process } from './components/Process';
 import { Founder } from './components/Founder';
@@ -27,6 +28,7 @@ const Home = () => (
     <ToolMarquee />
     <Authority />
     <HomeProof />
+    <Guarantee />
     <Services />
     <Process />
     <Founder />
