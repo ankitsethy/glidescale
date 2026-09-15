@@ -109,6 +109,21 @@ Process → Founder → Metrics → Testimonials → (CallToAction, via the shel
 - Density pass done across all standard sections (`py-16 lg:py-24` instead of the original
   `py-20 lg:py-40`, which stacked ~320px of dead space between every section pair).
 
+## Perf pass (2026-09-16)
+
+Founder photo (`public/ankit.jpg`) was a PNG saved with a `.jpg` extension — 1MB, zero real
+JPEG compression, loaded eagerly on every homepage visit. Recompressed to a real JPEG (57KB),
+`loading="lazy"` added since it's mid-page. Google Fonts (Inter, 5 weights) was pulled from
+`fonts.googleapis.com` — two extra external round trips before any text could render — now
+self-hosted via `@fontsource-variable/inter`, bundled into the app CSS, same-origin. JS was a
+single 323KB bundle regardless of route; `vite.config.ts` now splits `react`/`react-dom` and
+`framer-motion` into separate vendor chunks (`isSsrBuild` guard needed — `manualChunks`
+breaks the SSR build since React is external there, not bundled). Nav logo (`logo-dark.svg`,
+rendered on every page) run through `svgo`: 46KB → 17KB. `vercel.json` now sets
+`Cache-Control: immutable, max-age=31536000` on `/assets`, `/tools`, `/logos`. Total `dist/`
+dropped from ~2.4MB to 1.1MB. `gharapna.svg` left as-is — real path data, not bloat, svgo only
+shaved 0.8%.
+
 ## Known live tension, NOT resolved — Ankit's call
 
 Hero headline is **"AI systems that remove bottlenecks and unlock scale."** Leads with "AI
