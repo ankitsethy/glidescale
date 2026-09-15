@@ -12,7 +12,7 @@ export const processSteps: ProcessStep[] = [
     num: '01',
     title: 'Discovery',
     short: 'A call with the people who do the work. Not the org chart version.',
-    long: 'A free 30-minute call with the people who actually do the work. We learn how the business really runs, who does what in which tool, and what breaks when someone is away.',
+    long: 'A 30-minute call with the people who actually do the work. We learn how the business really runs, who does what in which tool, and what breaks when someone is away.',
   },
   {
     num: '02',

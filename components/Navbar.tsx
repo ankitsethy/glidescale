@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
     >
       {/* Full width rather than the 1200px content column, so the logo sits near
           the viewport edge instead of ~360px inside it on a wide screen. */}
-      <div className="w-full px-6 lg:px-10 h-full flex items-center justify-between relative">
+      <div className="max-w-[1600px] w-full mx-auto px-6 lg:px-10 h-full flex items-center justify-between relative">
         {/* Logo */}
         <a
           href="/"

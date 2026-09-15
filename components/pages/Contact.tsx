@@ -27,7 +27,7 @@ const CalendarIcon = () => (
 
 const links = [
   {
-    label: 'Book a free 30-minute call',
+    label: 'Book a 30-minute call',
     href: 'https://cal.com/ankitsethy/30',
     icon: <CalendarIcon />,
   },

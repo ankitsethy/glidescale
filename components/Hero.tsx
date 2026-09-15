@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PrimaryCTA, SecondaryCTA, SectionEyebrow } from './Primitives';
+import { PrimaryCTA, SectionEyebrow } from './Primitives';
 
 export const Hero: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -68,9 +68,9 @@ export const Hero: React.FC = () => {
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </PrimaryCTA>
-            <SecondaryCTA onClick={() => scrollToSection('services')}>
-              See How We Work
-            </SecondaryCTA>
+            <a href="/process" className="btn-secondary">
+              <span className="inline-flex items-center gap-2">See How We Work</span>
+            </a>
           </motion.div>
         </div>
       </div>

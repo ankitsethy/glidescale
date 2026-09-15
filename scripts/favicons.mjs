@@ -17,7 +17,7 @@ const SRC_W = 695;
 const SRC_H = 194;
 
 const CANVAS = 512;
-const MARK_WIDTH_RATIO = 0.84;
+const MARK_WIDTH_RATIO = 0.96;
 
 const markWidth = CANVAS * MARK_WIDTH_RATIO;
 const scale = markWidth / SRC_W;

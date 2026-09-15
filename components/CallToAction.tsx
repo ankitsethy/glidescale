@@ -50,8 +50,9 @@ export const CallToAction: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.18 }}
           className="mt-8 text-lg md:text-xl text-ink-dim font-light max-w-xl mx-auto leading-relaxed"
         >
-          Thirty minutes, free. You leave knowing what we would build first
-          and why.
+          Thirty minutes. We map where your bottlenecks are. You leave with
+          clarity on how we can help, and something about your business you
+          did not know.
         </motion.p>
 
         <motion.div
@@ -66,22 +67,12 @@ export const CallToAction: React.FC = () => {
             onClick={() => window.open('https://cal.com/ankitsethy/30', '_blank')}
             className="!min-h-[64px] !px-12 !text-base"
           >
-            Book a free 30-minute call
+            Book a 30-minute call
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </PrimaryCTA>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-8 text-sm text-ink-mute"
-        >
-          30-minute call · No prep required · Replies within 24 hours
-        </motion.p>
       </div>
     </section>
   );
