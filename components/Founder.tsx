@@ -24,6 +24,10 @@ export const Founder: React.FC = () => {
                   <img
                     src="/ankit.jpg"
                     alt="Ankit Sethy"
+                    width={900}
+                    height={900}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).src =
