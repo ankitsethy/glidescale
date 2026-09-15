@@ -27,6 +27,8 @@ const LOGOS = [
   },
   { slug: 'vercel', kind: 'icon', url: 'https://svgl.app/library/vercel_dark.svg' },
   { slug: 'google-cloud', kind: 'icon', url: 'https://svgl.app/library/google-cloud.svg' },
+  { slug: 'clickup', kind: 'icon', url: 'https://svgl.app/library/clickup.svg' },
+  { slug: 'airtable', kind: 'icon', simpleIcon: 'siAirtable' },
 ];
 
 const OUT_DIR = resolve('public/tools');
