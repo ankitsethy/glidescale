@@ -16,10 +16,10 @@ export const HomeProof: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <SectionEyebrow>What We've Shipped</SectionEyebrow>
+            <SectionEyebrow>Clients</SectionEyebrow>
             <h2 className="mt-5 font-display font-semibold text-ink leading-[1.06] tracking-tighter text-[clamp(34px,5vw,60px)]">
-              Systems in production, <br />
-              not slides.
+              Who we've <br />
+              done this for.
             </h2>
           </motion.div>
 
