@@ -21,6 +21,4 @@ export const tools: Tool[] = [
   { name: 'Claude Code', slug: 'claude-code', kind: 'icon' },
   { name: 'Vercel', slug: 'vercel', kind: 'icon' },
   { name: 'Google Cloud', slug: 'google-cloud', kind: 'icon' },
-  { name: 'Neon', slug: 'neon', kind: 'icon' },
-  { name: 'Modal', slug: 'modal', kind: 'icon' },
 ];

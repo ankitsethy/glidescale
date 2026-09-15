@@ -27,10 +27,6 @@ const LOGOS = [
   },
   { slug: 'vercel', kind: 'icon', url: 'https://svgl.app/library/vercel_dark.svg' },
   { slug: 'google-cloud', kind: 'icon', url: 'https://svgl.app/library/google-cloud.svg' },
-  { slug: 'neon', kind: 'icon', url: 'https://svgl.app/library/neon.svg' },
-  // Not in svgl. simple-icons ships single-path monochrome marks, which suits
-  // the marquee's white-silhouette treatment anyway.
-  { slug: 'modal', kind: 'icon', simpleIcon: 'siModal' },
 ];
 
 const OUT_DIR = resolve('public/tools');
